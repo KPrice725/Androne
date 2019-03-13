@@ -6,8 +6,8 @@ import com.boxnotfound.sinewavegenerator.thread.AndroneThread;
 public class Androne {
 
     private AndroneThread androneThread;
-    private double frequency = 0f;
-    private WaveForm waveForm = WaveForm.SINE;
+    private double frequency = 400.0;
+    private WaveForm waveForm = WaveForm.TRIANGLE;
 
     public Androne startAndrone() {
         if (androneThread == null) {

@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Sine Wave Generator</string>
-    <string name="btn_start_instantiated_sound">Run the instantiated wave!</string>
-    <string name="btn_start_builder_sound">Run the builder wave!</string>
+    <string name="btn_start_instantiated_sound">Start</string>
+    <string name="btn_start_builder_sound">Stop</string>
 </resources>
