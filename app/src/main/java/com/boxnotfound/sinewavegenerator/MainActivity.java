@@ -16,57 +16,14 @@ import com.boxnotfound.sinewavegenerator.instance.Androne;
 public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
-    private final int duration = 3; // seconds
-    private final int sampleRate = 44100;
-    private final int numSamples = duration * sampleRate;
-    private final double sample[] = new double[numSamples];
-    private final double freqOfTone = 440; // hz
+    private static final int sampleRate = 44100;
     private Androne sineAndrone, squareAndrone, triangleAndrone, sawtoothAndrone;
-
-    private final byte generatedSnd[] = new byte[2 * numSamples];
-
-    Handler handler = new Handler();
-
-    AudioTrack instantiatedTrack, builderTrack;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        final Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                generateTone();
-            }
-        });
-        thread.start();
-
-    }
-
-    public void generateTone() {
-        //generate sine wave
-        for (int i = 0; i < numSamples; i++) {
-            sample[i] = Math.sin(2 * Math.PI * i / (sampleRate / freqOfTone));
-        }
-
-        //convert samples to 16 bit pcm sound array
-        int idx = 0;
-        for (final double dVal : sample) {
-            final short val = (short) ((dVal * 32767));
-            generatedSnd[idx++] = (byte) (val & 0x00ff);
-            generatedSnd[idx++] = (byte) ((val & 0xff00) >>> 8);
-        }
-    }
-
 
     public void startSine(View view) {
         sineAndrone = new Androne();
