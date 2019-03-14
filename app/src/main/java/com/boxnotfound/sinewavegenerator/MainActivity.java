@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.boxnotfound.sinewavegenerator.constants.WaveForm;
 import com.boxnotfound.sinewavegenerator.instance.Androne;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private final int numSamples = duration * sampleRate;
     private final double sample[] = new double[numSamples];
     private final double freqOfTone = 440; // hz
-    private Androne androne;
+    private Androne sineAndrone, squareAndrone, triangleAndrone, sawtoothAndrone;
 
     private final byte generatedSnd[] = new byte[2 * numSamples];
 
@@ -67,15 +68,51 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void startInstantiatedSound(View view) {
-        androne = new Androne();
-        androne.startAndrone();
+    public void startSine(View view) {
+        sineAndrone = new Androne();
+        sineAndrone.startAndrone(WaveForm.SINE);
     }
 
-    public void startBuilderSound(View view) {
-        if (androne != null) {
-            androne.stopAndrone();
-            androne = null;
+    public void stopSine(View view) {
+        if (sineAndrone != null) {
+            sineAndrone.stopAndrone();
+            sineAndrone = null;
+        }
+    }
+
+    public void startSquare(View view) {
+        squareAndrone = new Androne();
+        squareAndrone.startAndrone(WaveForm.SQUARE);
+    }
+
+    public void stopSquare(View view) {
+        if (squareAndrone != null) {
+            squareAndrone.stopAndrone();
+            squareAndrone = null;
+        }
+    }
+
+    public void startTriangle(View view) {
+        triangleAndrone = new Androne();
+        triangleAndrone.startAndrone(WaveForm.TRIANGLE);
+    }
+
+    public void stopTriangle(View view) {
+        if (triangleAndrone != null) {
+            triangleAndrone.stopAndrone();
+            triangleAndrone = null;
+        }
+    }
+
+    public void startSawtooth(View view) {
+        sawtoothAndrone = new Androne();
+        sawtoothAndrone.startAndrone(WaveForm.SAWTOOTH);
+    }
+
+    public void stopSawtooth(View view) {
+        if (sawtoothAndrone != null) {
+            sawtoothAndrone.stopAndrone();
+            sawtoothAndrone = null;
         }
     }
 }

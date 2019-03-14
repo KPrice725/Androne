@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Sine Wave Generator</string>
-    <string name="btn_start_instantiated_sound">Start</string>
-    <string name="btn_start_builder_sound">Stop</string>
+    <string name="btn_start_sine">Start Sine</string>
+    <string name="btn_stop_sine">Stop Sine</string>
+    <string name="btn_start_square">Start Square</string>
+    <string name="btn_stop_square">Stop Square</string>
+    <string name="btn_start_triangle">Start Triangle</string>
+    <string name="btn_stop_triangle">Stop Triangle</string>
+    <string name="btn_start_sawtooth">Start Sawtooth</string>
+    <string name="btn_stop_sawtooth">Stop Sawtooth</string>
 </resources>

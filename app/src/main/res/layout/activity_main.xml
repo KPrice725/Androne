@@ -7,24 +7,85 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/instantiate_button"
+        android:id="@+id/btn_start_sine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_start_instantiated_sound"
+        android:layout_marginLeft="4dp"
+        android:onClick="startSine"
+        android:text="@string/btn_start_sine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:onClick="startInstantiatedSound"/>
+        app:layout_constraintVertical_bias="0.023" />
 
     <Button
-        android:id="@+id/builder_button"
+        android:id="@+id/btn_stop_sine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_start_builder_sound"
-        app:layout_constraintTop_toBottomOf="@id/instantiate_button"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/btn_stop_sine"
+        app:layout_constraintTop_toBottomOf="@id/btn_start_sine"
+        app:layout_constraintLeft_toLeftOf="@id/btn_start_sine"
+        app:layout_constraintRight_toRightOf="@id/btn_start_sine"
+        android:onClick="stopSine"/>
+
+    <Button
+        android:id="@+id/btn_start_square"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_start_square"
+        app:layout_constraintBottom_toBottomOf="@id/btn_start_sine"
+        app:layout_constraintLeft_toRightOf="@id/btn_start_sine"
+        app:layout_constraintTop_toTopOf="@id/btn_start_sine"
+        android:onClick="startSquare"/>
+
+    <Button
+        android:id="@+id/btn_stop_square"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_stop_square"
+        app:layout_constraintTop_toBottomOf="@id/btn_start_square"
+        app:layout_constraintLeft_toLeftOf="@id/btn_start_square"
+        app:layout_constraintRight_toRightOf="@id/btn_start_square"
+        android:onClick="stopSquare"/>
+
+    <Button
+        android:id="@+id/btn_start_triangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_start_triangle"
+        app:layout_constraintBottom_toBottomOf="@id/btn_start_square"
+        app:layout_constraintLeft_toRightOf="@id/btn_start_square"
+        app:layout_constraintTop_toTopOf="@id/btn_start_square"
+        android:onClick="startTriangle"/>
+
+    <Button
+        android:id="@+id/btn_stop_triangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_stop_triangle"
+        app:layout_constraintTop_toBottomOf="@id/btn_start_triangle"
+        app:layout_constraintLeft_toLeftOf="@id/btn_start_triangle"
+        app:layout_constraintRight_toRightOf="@id/btn_start_triangle"
+        android:onClick="stopTriangle"/>
+
+    <Button
+        android:id="@+id/btn_start_sawtooth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_start_sawtooth"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:onClick="startBuilderSound"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="startSawtooth"/>
+
+    <Button
+        android:id="@+id/btn_stop_sawtooth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_stop_sawtooth"
+        app:layout_constraintTop_toBottomOf="@id/btn_start_sawtooth"
+        app:layout_constraintLeft_toLeftOf="@id/btn_start_sawtooth"
+        app:layout_constraintRight_toRightOf="@id/btn_start_sawtooth"
+        android:onClick="stopSawtooth"/>
 
 </android.support.constraint.ConstraintLayout>

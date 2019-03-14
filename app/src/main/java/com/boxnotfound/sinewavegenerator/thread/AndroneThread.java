@@ -55,49 +55,48 @@ public class AndroneThread extends Thread {
                     Log.i(LOG_TAG, "Sine Wave Sampling Started");
                     for (int i = 0; i < sample.length; i++) {
                         sample[i] = (short) (amplitude * Math.sin(currentPhase));
-                        currentPhase += (2 * Math.PI * freq / sampleRate);
+                        currentPhase += ((2 * Math.PI * freq) / sampleRate);
+                        if (currentPhase > (2 * Math.PI)) {
+                            currentPhase -= (2 * Math.PI);
+                        }
                     }
-                    Log.i(LOG_TAG, "Sine Wave Sampling Finished.  Sin(currentPhase) = " + Math.sin(currentPhase));
                     // TODO: Test if resetting currentPhase to 0 affects anything negatively.
-                    currentPhase = 0.0;
                     break;
                 case SQUARE: {
                     Log.i(LOG_TAG, "Square Wave Sampling Started");
-//                    for (int i = 0; i < sample.length; i++) {
-//                        sample[i] = Math.sin(currentPhase) >= 0 ? (short) amplitude : (short) -amplitude;
-//                        currentPhase += (2 * Math.PI * freq / sampleRate);
-//                    }
-                    int i = 0;
-                    sample[i++] = (short) 0;
-                    for (; i < sample.length / 2; i++) {
-                        sample[i] = (short) amplitude;
+                    for (int i = 0; i < sample.length; i++) {
+                        sample[i] = currentPhase < Math.PI ? (short) amplitude : (short) -amplitude;
+                        currentPhase += (2 * Math.PI * freq / sampleRate);
+                        if (currentPhase > (2 * Math.PI)) {
+                            currentPhase -= (2 * Math.PI);
+                        }
                     }
-                    for (; i < sample.length - 1; i++) {
-                        sample[i] = (short) -amplitude;
-                    }
-                    sample[i] = (short) 0;
+
                 } break;
                 case TRIANGLE: {
                     Log.i(LOG_TAG, "Triangle Wave Sampling Started");
-                    double slope = amplitude / (((1 / freq) * sampleRate) / 4);
-                    int sampleIndex = 0;
-                    int phaseIndex = 0;
-                    for (int i = 0; i < sample.length / 4; i++) {
-                        sample[sampleIndex++] = (short) (slope * phaseIndex++);
+                    for (int i = 0; i < sample.length; i++) {
+                        if (currentPhase < Math.PI) {
+                            sample[i] = (short) (-amplitude + (2 * amplitude / Math.PI) * currentPhase);
+                        } else {
+                            sample[i] = (short) (3 * amplitude - (2 * amplitude / Math.PI) * currentPhase);
+                        }
+                        currentPhase += (2 * Math.PI * freq / sampleRate);
+                        if (currentPhase > (2 * Math.PI)) {
+                            currentPhase -= (2 * Math.PI);
+                        }
                     }
-                    phaseIndex--;
-                    for (int i = 0; i < sample.length / 2; i++) {
-                        sample[sampleIndex++] = (short) (slope * phaseIndex--);
-                    }
-                    phaseIndex++;
-                    for (int i = 0; i < sample.length / 4; i++) {
-                        sample[sampleIndex++] = (short) (slope * phaseIndex++);
-                    }
-                    Log.d(LOG_TAG, "Current Phase Index: " + phaseIndex);
+
                 } break;
                 case SAWTOOTH:
                     Log.i(LOG_TAG, "Sawtooth Wave Sampling Started");
-
+                    for (int i = 0; i < sample.length; i++) {
+                        sample[i] = (short) (amplitude - ((amplitude / Math.PI) * currentPhase));
+                        currentPhase += (2 * Math.PI * freq / sampleRate);
+                        if (currentPhase > (2 * Math.PI)) {
+                            currentPhase -= (2 * Math.PI);
+                        }
+                    }
                     break;
                 default:
                     Log.e(LOG_TAG, "Unknown WaveForm Selected");

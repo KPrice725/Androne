@@ -7,13 +7,13 @@ public class Androne {
 
     private AndroneThread androneThread;
     private double frequency = 400.0;
-    private WaveForm waveForm = WaveForm.TRIANGLE;
+    private WaveForm waveForm = WaveForm.SQUARE;
 
-    public Androne startAndrone() {
+    public Androne startAndrone(WaveForm wf) {
         if (androneThread == null) {
             androneThread = new AndroneThread();
             androneThread.setFrequency(frequency);
-            androneThread.setWaveForm(waveForm);
+            androneThread.setWaveForm(wf);
             androneThread.start();
         }
         return this;
