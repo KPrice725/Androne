@@ -30,6 +30,9 @@ public class AndroneThread extends Thread {
         }
 
         public AndroneThread build() {
+            if (frequency == 0.0 || waveForm == null) {
+                throw new IllegalStateException("frequency and waveform are both required");
+            }
             return new AndroneThread(frequency, waveForm);
         }
 
