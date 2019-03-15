@@ -1,10 +1,13 @@
 package com.boxnotfound.sinewavegenerator.instance;
 
+import android.util.Log;
+
 import com.boxnotfound.sinewavegenerator.constants.WaveForm;
 import com.boxnotfound.sinewavegenerator.thread.AndroneThread;
 
 public class Androne {
 
+    private static final String LOG_TAG = Androne.class.getSimpleName();
     private AndroneThread androneThread;
     private double frequency;
     private WaveForm waveForm;
@@ -33,11 +36,15 @@ public class Androne {
 
     public void startAndrone() {
         if (androneThread == null) {
-            androneThread = new AndroneThread.Builder()
-                    .setFrequency(frequency)
-                    .setWaveForm(waveForm)
-                    .build();
-            androneThread.start();
+            try {
+                androneThread = new AndroneThread.Builder()
+                        .setFrequency(frequency)
+                        .setWaveForm(waveForm)
+                        .build();
+                androneThread.start();
+            } catch (IllegalStateException e) {
+                Log.e(LOG_TAG, e.getMessage());
+            }
         }
     }
 
