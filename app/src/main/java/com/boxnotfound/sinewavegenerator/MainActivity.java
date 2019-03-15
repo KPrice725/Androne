@@ -16,7 +16,7 @@ import com.boxnotfound.sinewavegenerator.instance.Androne;
 public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
-    private static final int sampleRate = 44100;
+    private static final double defaultFrequency = 440.0;
     private Androne sineAndrone, squareAndrone, triangleAndrone, sawtoothAndrone;
 
     @Override
@@ -26,50 +26,66 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startSine(View view) {
-        sineAndrone = new Androne();
-        sineAndrone.startAndrone(WaveForm.SINE);
+        if (sineAndrone == null) {
+            sineAndrone = new Androne.Builder()
+                    .setFrequency(defaultFrequency)
+                    .setWaveForm(WaveForm.SINE)
+                    .build();
+        }
+        sineAndrone.startAndrone();
     }
 
     public void stopSine(View view) {
         if (sineAndrone != null) {
             sineAndrone.stopAndrone();
-            sineAndrone = null;
         }
     }
 
     public void startSquare(View view) {
-        squareAndrone = new Androne();
-        squareAndrone.startAndrone(WaveForm.SQUARE);
+        if (squareAndrone == null) {
+            squareAndrone = new Androne.Builder()
+                    .setFrequency(defaultFrequency)
+                    .setWaveForm(WaveForm.SQUARE)
+                    .build();
+        }
+        squareAndrone.startAndrone();
     }
 
     public void stopSquare(View view) {
         if (squareAndrone != null) {
             squareAndrone.stopAndrone();
-            squareAndrone = null;
         }
     }
 
     public void startTriangle(View view) {
-        triangleAndrone = new Androne();
-        triangleAndrone.startAndrone(WaveForm.TRIANGLE);
+        if (triangleAndrone == null) {
+            triangleAndrone = new Androne.Builder()
+                    .setFrequency(defaultFrequency)
+                    .setWaveForm(WaveForm.TRIANGLE)
+                    .build();
+        }
+        triangleAndrone.startAndrone();
     }
 
     public void stopTriangle(View view) {
         if (triangleAndrone != null) {
             triangleAndrone.stopAndrone();
-            triangleAndrone = null;
         }
     }
 
     public void startSawtooth(View view) {
-        sawtoothAndrone = new Androne();
-        sawtoothAndrone.startAndrone(WaveForm.SAWTOOTH);
+        if (sawtoothAndrone == null) {
+            sawtoothAndrone = new Androne.Builder()
+                    .setFrequency(defaultFrequency)
+                    .setWaveForm(WaveForm.SAWTOOTH)
+                    .build();
+        }
+        sawtoothAndrone.startAndrone();
     }
 
     public void stopSawtooth(View view) {
         if (sawtoothAndrone != null) {
             sawtoothAndrone.stopAndrone();
-            sawtoothAndrone = null;
         }
     }
 }
