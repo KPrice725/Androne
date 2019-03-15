@@ -47,10 +47,7 @@ public class AndroneThread extends Thread {
     public void run() {
         super.run();
         soundOn = true;
-        // int bufferSize = AudioTrack.getMinBufferSize(sampleRate, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT);
-
-        // TODO: Test latency and performance caused by setting bufferSize to match sampleRate
-        int bufferSize = sampleRate;
+        int bufferSize = AudioTrack.getMinBufferSize(sampleRate, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT);
 
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
                 .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
