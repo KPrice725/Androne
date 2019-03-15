@@ -11,9 +11,34 @@ public class AndroneThread extends Thread {
 
     private static final String LOG_TAG = AndroneThread.class.getSimpleName();
     private boolean soundOn;
-    private int sampleRate = 44100;
-    private double frequency = 440.0;
+    private static int sampleRate = 44100;
+    private double frequency;
     private WaveForm waveForm;
+
+    public static class Builder {
+        private double frequency;
+        private WaveForm waveForm;
+
+        public Builder setFrequency(double f) {
+            frequency = f;
+            return this;
+        }
+
+        public Builder setWaveForm(WaveForm wf) {
+            waveForm = wf;
+            return this;
+        }
+
+        public AndroneThread build() {
+            return new AndroneThread(frequency, waveForm);
+        }
+
+    }
+
+    private AndroneThread(double f, WaveForm wf) {
+        frequency = f;
+        waveForm = wf;
+    }
 
     @Override
     public void run() {

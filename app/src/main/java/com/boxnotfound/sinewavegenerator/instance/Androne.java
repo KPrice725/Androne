@@ -33,9 +33,10 @@ public class Androne {
 
     public void startAndrone() {
         if (androneThread == null) {
-            androneThread = new AndroneThread();
-            androneThread.setFrequency(frequency);
-            androneThread.setWaveForm(waveForm);
+            androneThread = new AndroneThread.Builder()
+                    .setFrequency(frequency)
+                    .setWaveForm(waveForm)
+                    .build();
             androneThread.start();
         }
     }
