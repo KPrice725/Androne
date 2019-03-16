@@ -56,6 +56,14 @@
         app:layout_constraintBottom_toBottomOf="@id/play_toggle_button"
         android:contentDescription="@string/description_volume" />
 
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/play_toggle_button"
+        app:layout_constraintBottom_toBottomOf="@id/play_toggle_button"
+        android:background="@color/colorDivider"/>
+    
     <TextView
         android:id="@+id/waveform_header_textview"
         android:layout_width="wrap_content"
@@ -74,6 +82,16 @@
         app:layout_constraintLeft_toLeftOf="@id/waveform_header_textview"
         app:layout_constraintRight_toRightOf="@id/waveform_header_textview"
         app:layout_constraintTop_toTopOf="@id/frequency_edittext" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/colorDivider"
+        app:layout_constraintLeft_toRightOf="@id/waveform_header_textview"
+        app:layout_constraintRight_toLeftOf="@id/frequency_header_textview"
+        app:layout_constraintTop_toBottomOf="@id/line1"
+        app:layout_constraintBottom_toBottomOf="@id/frequency_hz_decrement"
+        />
 
     <TextView
         android:id="@+id/frequency_header_textview"
@@ -129,6 +147,15 @@
         app:layout_constraintRight_toRightOf="@id/frequency_hz_increment"
         app:layout_constraintTop_toBottomOf="@id/frequency_hz_increment" />
 
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/colorDivider"
+        app:layout_constraintLeft_toRightOf="@id/frequency_header_textview"
+        app:layout_constraintRight_toLeftOf="@id/pitch_header_textview"
+        app:layout_constraintTop_toBottomOf="@id/line1"
+        app:layout_constraintBottom_toBottomOf="@id/frequency_hz_decrement" />
+    
     <TextView
         android:id="@+id/pitch_header_textview"
         android:layout_width="0dp"
@@ -178,5 +205,11 @@
         app:layout_constraintLeft_toLeftOf="@id/pitch_increment"
         app:layout_constraintRight_toRightOf="@id/pitch_increment"
         app:layout_constraintTop_toBottomOf="@id/pitch_increment" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
