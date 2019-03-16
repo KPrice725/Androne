@@ -8,4 +8,15 @@
     <string name="btn_stop_triangle">Stop Triangle</string>
     <string name="btn_start_sawtooth">Start Sawtooth</string>
     <string name="btn_stop_sawtooth">Stop Sawtooth</string>
+    <string name="hz">hz</string>
+    <string name="description_decrement_frequency_in_hz">decrement frequency in hz</string>
+    <string name="description_increment_frequency_in_hz">increment frequency in hz</string>
+    <string name="description_decrement_pitch">decrement pitch</string>
+    <string name="description_increment_pitch">increment pitch</string>
+    <string name="waveform_header_text">Waveform</string>
+    <string name="frequency_header_text">Frequency</string>
+    <string name="pitch_header_text">Pitch</string>
+    <string name="androne_name_header_text">Name:</string>
+    <string name="description_volume">volume</string>
+    <string name="description_play_button">Play button</string>
 </resources>
