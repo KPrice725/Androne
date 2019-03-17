@@ -56,11 +56,11 @@
   <path
       android:pathData="M0.3203,4.5003h11.6094v7.4993h-11.6094z"
       android:strokeWidth="0.24782948"
-      android:fillColor="transparent"
+      android:fillColor="@android:color/transparent"
       android:strokeColor="#000000"/>
   <path
       android:pathData="M11.9203,11.9704h11.6094v7.4993h-11.6094z"
       android:strokeWidth="0.24782948"
-      android:fillColor="transparent"
+      android:fillColor="@android:color/transparent"
       android:strokeColor="#000000"/>
 </vector>
