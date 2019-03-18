@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     public void startSine(View view) {
         if (sineAndrone == null) {
             sineAndrone = new Androne.Builder()
-                    .setFrequency(defaultFrequency)
+                    .setPitch(defaultFrequency)
                     .setWaveForm(WaveForm.SINE)
                     .build();
         }
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     public void startSquare(View view) {
         if (squareAndrone == null) {
             squareAndrone = new Androne.Builder()
-                    .setFrequency(defaultFrequency)
+                    .setPitch(defaultFrequency)
                     .setWaveForm(WaveForm.SQUARE)
                     .build();
         }
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     public void startTriangle(View view) {
         if (triangleAndrone == null) {
             triangleAndrone = new Androne.Builder()
-                    .setFrequency(defaultFrequency)
+                    .setPitch(defaultFrequency)
                     .setWaveForm(WaveForm.TRIANGLE)
                     .build();
         }
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     public void startSawtooth(View view) {
         if (sawtoothAndrone == null) {
             sawtoothAndrone = new Androne.Builder()
-                    .setFrequency(defaultFrequency)
+                    .setPitch(defaultFrequency)
                     .setWaveForm(WaveForm.SAWTOOTH)
                     .build();
         }
