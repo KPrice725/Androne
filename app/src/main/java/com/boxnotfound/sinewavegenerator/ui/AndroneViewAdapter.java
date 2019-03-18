@@ -99,7 +99,23 @@ public class AndroneViewAdapter extends RecyclerView.Adapter<AndroneViewAdapter.
         });
 
         SeekBar volumeSeekbar = viewHolder.androneVolume;
-        volumeSeekbar.setProgress(androne.getVolume());
+        volumeSeekbar.setProgress(androne.getVolumeProgress());
+        volumeSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                androne.setVolumeProgress(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         viewHolder.androneFrequencyIncrement.setOnClickListener(new View.OnClickListener() {
             @Override

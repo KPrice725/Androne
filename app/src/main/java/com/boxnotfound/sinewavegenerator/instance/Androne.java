@@ -110,12 +110,15 @@ public class Androne {
         }
     }
 
-    public void setVolume(float v) {
-        volume = v;
+    public void setVolumeProgress(int progress) {
+        volume = progress / 100.0f;
+        Log.d(LOG_TAG, "Set Volume to: " + volume);
     }
 
-    public float getVolume() {
-        return volume;
+    public int getVolumeProgress() {
+        int volumeProgress = (int) volume * 100;
+        Log.d(LOG_TAG, "Current volume received by seekbar: " + volumeProgress);
+        return volumeProgress;
     }
 
     public void incrementFrequency() {
