@@ -1,14 +1,11 @@
 package com.boxnotfound.sinewavegenerator.instance;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.boxnotfound.sinewavegenerator.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 
 public class Pitch {
 
@@ -135,5 +132,17 @@ public class Pitch {
             }
         }
         throw new IllegalArgumentException("Could not locate Middle C");
+    }
+
+    public double getFrequency() {
+        return frequency;
+    }
+
+    public String getPitch() {
+        return pitch;
+    }
+
+    public int getCents() {
+        return cents;
     }
 }
