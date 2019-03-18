@@ -28,9 +28,6 @@
     </string-array>
 
     <string-array name="pitch_names">
-        <item>C0</item>
-        <item>C#0</item>
-        <item>D0</item>
         <item>D#0</item>
         <item>E0</item>
         <item>F0</item>
@@ -163,13 +160,6 @@
         <item>D10</item>
         <item>D#10</item>
         <item>E10</item>
-        <item>F10</item>
-        <item>F#10</item>
-        <item>G10</item>
-        <item>G#10</item>
-        <item>A10</item>
-        <item>A#10</item>
-        <item>B10</item>
     </string-array>
 
 
