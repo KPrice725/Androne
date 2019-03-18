@@ -14,9 +14,8 @@ public class Androne {
 
 
     public static class Builder {
-        //in case of no passed frequency and/or waveform, default to 440hz Sine Wave
         private Pitch pitch;
-        private WaveForm waveForm = WaveForm.SINE;
+        private WaveForm waveForm;
         public Builder setPitch(double f) {
             pitch = new Pitch(f);
             return this;
@@ -25,11 +24,18 @@ public class Androne {
             pitch = new Pitch(pitchName);
             return this;
         }
+        public Builder setPitch(Pitch p) {
+            pitch = p;
+            return this;
+        }
         public Builder setWaveForm(WaveForm wf) {
             waveForm = wf;
             return this;
         }
         public Androne build() {
+            if (pitch == null || waveForm == null) {
+                throw new IllegalStateException("pitch and waveform are both required");
+            }
             return new Androne(pitch, waveForm);
         }
     }
