@@ -9,17 +9,20 @@ public class Androne {
 
     private static final String LOG_TAG = Androne.class.getSimpleName();
     private AndroneThread androneThread;
-    private double frequency;
-    private String pitch;
+    private Pitch pitch;
     private WaveForm waveForm;
 
 
     public static class Builder {
         //in case of no passed frequency and/or waveform, default to 440hz Sine Wave
-        private double frequency = 440.0;
+        private Pitch pitch;
         private WaveForm waveForm = WaveForm.SINE;
-        public Builder setFrequency(double f) {
-            frequency = f;
+        public Builder setPitch(double f) {
+            pitch = new Pitch(f);
+            return this;
+        }
+        public Builder setPitch(String pitchName) {
+            pitch = new Pitch(pitchName);
             return this;
         }
         public Builder setWaveForm(WaveForm wf) {
@@ -27,12 +30,12 @@ public class Androne {
             return this;
         }
         public Androne build() {
-            return new Androne(frequency, waveForm);
+            return new Androne(pitch, waveForm);
         }
     }
 
-    private Androne(double f, WaveForm wf) {
-        frequency = f;
+    private Androne(Pitch p, WaveForm wf) {
+        pitch = p;
         waveForm = wf;
     }
 
