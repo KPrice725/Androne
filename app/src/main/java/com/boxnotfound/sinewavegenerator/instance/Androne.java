@@ -10,7 +10,9 @@ public class Androne {
     private static final String LOG_TAG = Androne.class.getSimpleName();
     private AndroneThread androneThread;
     private double frequency;
+    private String pitch;
     private WaveForm waveForm;
+
 
     public static class Builder {
         //in case of no passed frequency and/or waveform, default to 440hz Sine Wave
@@ -77,4 +79,33 @@ public class Androne {
         }
     }
 
+    public String getFrequencyDifferenceInCents() {
+        // TODO
+        return "± 0 cents";
+    }
+
+    public String getPitch() {
+        // TODO
+        return "A4";
+    }
+
+    public void setPitch() {
+        // TODO
+    }
+
+    public void incrementFrequency() {
+        // TODO
+    }
+
+    public void decrementFrequency() {
+        // TODO
+    }
+
+    public void incrementPitch() {
+        // TODO
+    }
+
+    public void decrementPitch() {
+        // TODO
+    }
 }
