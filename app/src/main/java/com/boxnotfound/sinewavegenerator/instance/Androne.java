@@ -43,7 +43,7 @@ public class Androne {
         if (androneThread == null) {
             try {
                 androneThread = new AndroneThread.Builder()
-                        .setFrequency(frequency)
+                        .setFrequency(pitch.getFrequency())
                         .setWaveForm(waveForm)
                         .build();
                 androneThread.start();
@@ -54,14 +54,14 @@ public class Androne {
     }
 
     public void setFrequency(double f) {
-        frequency = f;
+        pitch = new Pitch(f);
         if (androneThread != null) {
             androneThread.setFrequency(f);
         }
     }
 
     public double getFrequency() {
-        return frequency;
+        return pitch.getFrequency();
     }
 
     public void setWaveForm(WaveForm wf) {
@@ -82,18 +82,26 @@ public class Androne {
         }
     }
 
-    public String getFrequencyDifferenceInCents() {
+    public String getCents() {
         // TODO
-        return "± 0 cents";
+        int cents = pitch.getCents();
+        if (cents == 0) {
+            return "±0 cents";
+        } else {
+            return String.valueOf(cents) + " cents";
+        }
+
     }
 
     public String getPitch() {
-        // TODO
-        return "A4";
+        return pitch.getPitch();
     }
 
-    public void setPitch() {
-        // TODO
+    public void setPitch(String pitchName) {
+        pitch = new Pitch(pitchName);
+        if (androneThread != null) {
+            androneThread.setFrequency(pitch.getFrequency());
+        }
     }
 
     public void incrementFrequency() {
