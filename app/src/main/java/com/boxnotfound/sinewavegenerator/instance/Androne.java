@@ -11,6 +11,7 @@ public class Androne {
     private AndroneThread androneThread;
     private Pitch pitch;
     private WaveForm waveForm;
+    private float volume;
 
 
     public static class Builder {
@@ -43,6 +44,7 @@ public class Androne {
     private Androne(Pitch p, WaveForm wf) {
         pitch = p;
         waveForm = wf;
+        volume = 1.0f;
     }
 
     public void startAndrone() {
@@ -89,14 +91,12 @@ public class Androne {
     }
 
     public String getCents() {
-        // TODO
         int cents = pitch.getCents();
         if (cents == 0) {
             return "±0 cents";
         } else {
             return String.valueOf(cents) + " cents";
         }
-
     }
 
     public String getPitch() {
@@ -108,6 +108,14 @@ public class Androne {
         if (androneThread != null) {
             androneThread.setFrequency(pitch.getFrequency());
         }
+    }
+
+    public void setVolume(float v) {
+        volume = v;
+    }
+
+    public float getVolume() {
+        return volume;
     }
 
     public void incrementFrequency() {
