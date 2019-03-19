@@ -14,7 +14,7 @@
     <string name="description_decrement_pitch">decrement pitch</string>
     <string name="description_increment_pitch">increment pitch</string>
     <string name="waveform_header_text">Waveform</string>
-    <string name="frequency_header_text">Frequency</string>
+    <string name="frequency_header_text">Frequency (hz)</string>
     <string name="pitch_header_text">Pitch</string>
     <string name="androne_name_header_text">Name:</string>
     <string name="description_volume">volume</string>

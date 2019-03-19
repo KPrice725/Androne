@@ -1,200 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/play_toggle_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        tools:src="@drawable/ic_play_arrow_black_24dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/description_play_button" />
-
-    <SeekBar
-        android:id="@+id/volume_seekbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:max="100"
-        app:layout_constraintLeft_toRightOf="@id/volume_imageview"
-        app:layout_constraintRight_toLeftOf="@id/play_toggle_button"
-        app:layout_constraintTop_toTopOf="@id/play_toggle_button"
-        app:layout_constraintBottom_toBottomOf="@id/play_toggle_button"/>
-
-    <ImageView
-        android:id="@+id/volume_imageview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_volume_up_black_24dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@id/play_toggle_button"
-        app:layout_constraintBottom_toBottomOf="@id/play_toggle_button"
-        android:contentDescription="@string/description_volume" />
-
-    <View
-        android:id="@+id/line1"
+    <RelativeLayout
+        android:id="@+id/top_row"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:layout_constraintTop_toBottomOf="@id/play_toggle_button"
-        app:layout_constraintBottom_toBottomOf="@id/play_toggle_button"
-        android:background="@color/colorDivider"/>
-    
-    <TextView
-        android:id="@+id/waveform_header_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:gravity="center"
-        android:text="@string/waveform_header_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/play_toggle_button" />
+        android:layout_height="wrap_content">
 
-    <Spinner
-        android:id="@+id/waveform_spinner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:entries="@array/waveform_names"
-        app:layout_constraintBottom_toBottomOf="@id/frequency_edittext"
-        app:layout_constraintLeft_toLeftOf="@id/waveform_header_textview"
-        app:layout_constraintRight_toRightOf="@id/waveform_header_textview"
-        app:layout_constraintTop_toTopOf="@id/frequency_edittext" />
+        <ImageView
+            android:id="@+id/volume_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/description_volume"
+            android:src="@drawable/ic_volume_up_black_24dp" />
 
-    <View
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:background="@color/colorDivider"
-        app:layout_constraintLeft_toRightOf="@id/waveform_header_textview"
-        app:layout_constraintRight_toLeftOf="@id/frequency_header_textview"
-        app:layout_constraintTop_toBottomOf="@id/line1"
-        app:layout_constraintBottom_toBottomOf="@id/frequency_hz_decrement"
-        />
+        <SeekBar
+            android:id="@+id/volume_seekbar"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:layout_toEndOf="@id/volume_imageview"
+            android:max="100" />
 
-    <TextView
-        android:id="@+id/frequency_header_textview"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/frequency_header_text"
-        app:layout_constraintLeft_toLeftOf="@id/frequency_edittext"
-        app:layout_constraintRight_toRightOf="@id/frequency_hz_increment"
-        app:layout_constraintTop_toBottomOf="@id/play_toggle_button" />
+        <ImageButton
+            android:id="@+id/play_toggle_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/description_play_button"
+            android:src="@drawable/ic_play_arrow_black_24dp" />
 
-    <EditText
-        android:id="@+id/frequency_edittext"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toBottomOf="@id/frequency_hz_decrement"
-        app:layout_constraintTop_toTopOf="@id/frequency_hz_increment"
-        app:layout_constraintLeft_toRightOf="@id/waveform_spinner"
-        tools:text="440.00" />
-
-    <TextView
-        android:id="@+id/hz_textview"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center"
-        android:text="@string/hz"
-        app:layout_constraintBottom_toBottomOf="@id/frequency_hz_decrement"
-        app:layout_constraintRight_toLeftOf="@+id/frequency_hz_increment"
-        app:layout_constraintLeft_toRightOf="@id/frequency_edittext"
-        app:layout_constraintTop_toTopOf="@id/frequency_hz_increment" />
-
-    <ImageButton
-        android:id="@+id/frequency_hz_increment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:contentDescription="@string/description_increment_frequency_in_hz"
-        android:src="@drawable/ic_add_white_18dp"
-        app:layout_constraintEnd_toStartOf="@+id/pitch_spinner"
-        app:layout_constraintTop_toBottomOf="@id/frequency_header_textview" />
-
-    <ImageButton
-        android:id="@+id/frequency_hz_decrement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/description_decrement_frequency_in_hz"
-        android:src="@drawable/ic_remove_white_18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/frequency_hz_increment"
-        app:layout_constraintRight_toRightOf="@id/frequency_hz_increment"
-        app:layout_constraintTop_toBottomOf="@id/frequency_hz_increment" />
-
-    <View
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:background="@color/colorDivider"
-        app:layout_constraintLeft_toRightOf="@id/frequency_header_textview"
-        app:layout_constraintRight_toLeftOf="@id/pitch_header_textview"
-        app:layout_constraintTop_toBottomOf="@id/line1"
-        app:layout_constraintBottom_toBottomOf="@id/frequency_hz_decrement" />
-    
-    <TextView
-        android:id="@+id/pitch_header_textview"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/pitch_header_text"
-        app:layout_constraintLeft_toLeftOf="@id/pitch_spinner"
-        app:layout_constraintRight_toRightOf="@id/pitch_increment"
-        app:layout_constraintTop_toBottomOf="@id/play_toggle_button" />
-
-    <Spinner
-        android:id="@+id/pitch_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:entries="@array/pitch_names"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@id/pitch_decrement"
-        app:layout_constraintRight_toLeftOf="@id/cents_textview"
-        app:layout_constraintTop_toTopOf="@id/pitch_increment" />
-
-    <TextView
-        android:id="@+id/cents_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:gravity="center"
-        tools:text="± 0 cents"
-        app:layout_constraintBottom_toBottomOf="@id/pitch_spinner"
-        app:layout_constraintRight_toLeftOf="@+id/pitch_increment"
-        app:layout_constraintTop_toTopOf="@id/pitch_spinner" />
-
-    <ImageButton
-        android:id="@+id/pitch_increment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="@string/description_increment_pitch"
-        android:src="@drawable/ic_add_white_18dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pitch_header_textview" />
-
-    <ImageButton
-        android:id="@+id/pitch_decrement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/description_decrement_pitch"
-        android:src="@drawable/ic_remove_white_18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/pitch_increment"
-        app:layout_constraintRight_toRightOf="@id/pitch_increment"
-        app:layout_constraintTop_toBottomOf="@id/pitch_increment" />
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorDivider"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:background="@color/colorDivider" />
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/second_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/waveform_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/waveform_header_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/waveform_header_text" />
+
+            <Spinner
+                android:id="@+id/waveform_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/waveform_header_textview"
+                android:layout_centerHorizontal="true"
+                android:entries="@array/waveform_names" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorDivider" />
+
+        <RelativeLayout
+            android:id="@+id/frequency_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/frequency_header_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/frequency_header_text" />
+
+            <EditText
+                android:id="@+id/frequency_edittext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/frequency_header_textview"
+                android:layout_centerHorizontal="true"
+                android:inputType="numberDecimal"
+                android:maxLength="7"
+                tools:text="440.000" />
+
+            <RelativeLayout
+                android:id="@+id/frequency_button_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/frequency_edittext"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true">
+
+                <ImageButton
+                    android:id="@+id/frequency_hz_decrement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:contentDescription="@string/description_decrement_frequency_in_hz"
+                    android:src="@drawable/ic_remove_white_18dp"
+                    android:layout_alignParentBottom="true"/>
+
+                <ImageButton
+                    android:id="@+id/frequency_hz_increment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/frequency_hz_decrement"
+                    android:contentDescription="@string/description_increment_frequency_in_hz"
+                    android:src="@drawable/ic_add_white_18dp"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorDivider" />
+
+        <RelativeLayout
+            android:id="@+id/pitch_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/pitch_header_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/pitch_header_text" />
+
+            <Spinner
+                android:id="@+id/pitch_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pitch_header_textview"
+                android:layout_centerHorizontal="true"
+                android:entries="@array/pitch_names" />
+
+            <TextView
+                android:id="@+id/cents_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pitch_spinner"
+                android:layout_centerHorizontal="true"
+                tools:text="±0 ¢" />
+
+            <RelativeLayout
+                android:id="@+id/pitch_button_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cents_textview"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true">
+
+                <ImageButton
+                    android:id="@+id/pitch_decrement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:contentDescription="@string/description_decrement_pitch"
+                    android:src="@drawable/ic_remove_white_18dp"
+                    android:layout_alignParentBottom="true"/>
+
+                <ImageButton
+                    android:id="@+id/pitch_increment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/pitch_decrement"
+                    android:contentDescription="@string/description_increment_pitch"
+                    android:src="@drawable/ic_add_white_18dp"
+                    android:layout_alignParentBottom="true"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider" />
+
+</LinearLayout>
