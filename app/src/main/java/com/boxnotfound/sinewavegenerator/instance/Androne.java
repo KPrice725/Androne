@@ -93,9 +93,9 @@ public class Androne {
     public String getCents() {
         int cents = pitch.getCents();
         if (cents == 0) {
-            return "±0 cents";
+            return "±0 ¢";
         } else {
-            return String.valueOf(cents) + " cents";
+            return String.valueOf(cents) + " ¢";
         }
     }
 
