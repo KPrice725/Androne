@@ -7,6 +7,7 @@ import android.media.AudioTrack;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         androneView.setLayoutManager(manager);
+        androneView.addItemDecoration(new DividerItemDecoration(androneView.getContext(), manager.getOrientation()));
         androneView.setAdapter(androneViewAdapter);
 
     }

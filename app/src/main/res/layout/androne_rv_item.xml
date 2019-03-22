@@ -9,7 +9,8 @@
     <RelativeLayout
         android:id="@+id/top_row"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorRVTopRow">
 
         <ImageView
             android:id="@+id/volume_imageview"
@@ -44,11 +45,6 @@
 
     </RelativeLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorDivider" />
-
     <LinearLayout
         android:id="@+id/second_row"
         android:layout_width="match_parent"
@@ -59,7 +55,8 @@
             android:id="@+id/waveform_layout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@color/colorRVWaveform">
 
             <TextView
                 android:id="@+id/waveform_header_textview"
@@ -79,16 +76,12 @@
 
         </RelativeLayout>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/colorDivider" />
-
         <RelativeLayout
             android:id="@+id/frequency_layout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@color/colorRVFrequency">
 
             <TextView
                 android:id="@+id/frequency_header_textview"
@@ -138,16 +131,12 @@
 
         </RelativeLayout>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/colorDivider" />
-
         <RelativeLayout
             android:id="@+id/pitch_layout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@color/colorRVPitch">
 
             <TextView
                 android:id="@+id/pitch_header_textview"
