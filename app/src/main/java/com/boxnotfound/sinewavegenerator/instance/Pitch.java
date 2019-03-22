@@ -1,6 +1,7 @@
 package com.boxnotfound.sinewavegenerator.instance;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.boxnotfound.sinewavegenerator.R;
 
@@ -12,19 +13,25 @@ public class Pitch {
     private String pitch;
     private double frequency;
     private int cents;
+    private int pitchListIndex;
     private static ArrayList<Pitch> pitchList;
+    private static final String LOG_TAG = Pitch.class.getSimpleName();
 
-    private Pitch(String pitch, double frequency) {
+    private Pitch(String pitch, double frequency, int pitchListIndex) {
         this.pitch = pitch;
         this.frequency = frequency;
+        this.pitchListIndex = pitchListIndex;
         cents = 0;
     }
 
     public Pitch(String pitch) {
+        Log.d(LOG_TAG, "Pitch(String pitch) constructor called!");
         this.pitch = pitch;
-        for (Pitch p : pitchList) {
+        for (int i = 0; i < pitchList.size(); i++) {
+            Pitch p = pitchList.get(i);
             if (p.pitch.equals(pitch)) {
                 frequency = p.frequency;
+                pitchListIndex = i;
                 break;
             }
         }
@@ -35,9 +42,9 @@ public class Pitch {
     }
 
     public Pitch(double frequency) {
+        Log.d(LOG_TAG, "Pitch(double frequency) constructor called!");
         this.frequency = frequency;
         double pitchDifference = 0.0;
-        int pitchListIndex = 0;
 
         /* Check the frequency of the middle value of the pitchList.
         If the frequency argument is less than or equal to the middle pitch frequency, iterate upward
@@ -99,10 +106,19 @@ public class Pitch {
         cents = calculateCents(frequency, pitchList.get(pitchListIndex).frequency);
     }
 
+    public static Pitch atIndex(int index) {
+        if (index < pitchList.size()) {
+            return pitchList.get(index);
+        } else {
+            throw new IndexOutOfBoundsException("Index exceeds Pitch List's range!");
+        }
+    }
+
     // There are 100 cents of distance per semitone, 1200 cents per octave.
     // cents = 1200 * Log2(pitchFrequency / frequencyOfClosestPitch)
     private int calculateCents(double frequency, double closestPitchFrequency) {
-        return (int) Math.round(1200 * (Math.log(frequency / closestPitchFrequency) / Math.log(2)));
+        double cents = Math.round(1200 * (Math.log(frequency / closestPitchFrequency) / Math.log(2)));
+        return (int) cents;
     }
 
     //formula for calculating pitch frequency: pitch of A4 * 2 ^ ((number of semitones away from C4 - 9) / 12).
@@ -121,7 +137,7 @@ public class Pitch {
         for (int i = 0; i < pitchNames.size(); i++) {
             final String pitchName = pitchNames.get(i);
             final double frequency = 440.0 * Math.pow(2.0, ((i - indexOfMiddleC) - 9.0) / 12.0);
-            pitchList.add(new Pitch(pitchName, frequency));
+            pitchList.add(new Pitch(pitchName, frequency, i));
         }
     }
 
@@ -144,5 +160,13 @@ public class Pitch {
 
     public int getCents() {
         return cents;
+    }
+
+    public int getPitchListIndex() {
+        return pitchListIndex;
+    }
+
+    public static int getPitchListSize() {
+        return pitchList.size();
     }
 }

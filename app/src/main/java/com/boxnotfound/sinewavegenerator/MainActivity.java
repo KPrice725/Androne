@@ -116,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createAndrone(View view) {
-
+        Androne newAndrone = new Androne.Builder().setPitch("A4").setWaveForm(WaveForm.SINE).build();
+        androneList.add(newAndrone);
+        androneViewAdapter.notifyItemInserted(androneList.indexOf(newAndrone));
     }
 }

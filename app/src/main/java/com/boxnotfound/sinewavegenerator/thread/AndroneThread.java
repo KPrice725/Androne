@@ -14,10 +14,12 @@ public class AndroneThread extends Thread {
     private static int sampleRate = 44100;
     private double frequency;
     private WaveForm waveForm;
+    private float volume = -1.0f;
 
     public static class Builder {
         private double frequency;
         private WaveForm waveForm;
+        private float volume;
 
         public Builder setFrequency(double f) {
             frequency = f;
@@ -29,18 +31,24 @@ public class AndroneThread extends Thread {
             return this;
         }
 
+        public Builder setVolume(float v) {
+            volume = v;
+            return this;
+        }
+
         public AndroneThread build() {
-            if (frequency == 0.0 || waveForm == null) {
+            if (frequency == 0.0 || waveForm == null || volume == -1.0f) {
                 throw new IllegalStateException("frequency and waveform are both required");
             }
-            return new AndroneThread(frequency, waveForm);
+            return new AndroneThread(frequency, waveForm, volume);
         }
 
     }
 
-    private AndroneThread(double f, WaveForm wf) {
+    private AndroneThread(double f, WaveForm wf, float v) {
         frequency = f;
         waveForm = wf;
+        volume = v;
     }
 
     @Override
@@ -128,6 +136,7 @@ public class AndroneThread extends Thread {
                     soundOn = false;
                     break label;
             }
+            track.setVolume(volume);
             track.write(sample, 0, sample.length);
             Log.d(LOG_TAG, "Phase after write: " + currentPhase);
         }
@@ -141,6 +150,10 @@ public class AndroneThread extends Thread {
 
     public void setWaveForm(WaveForm wf) {
         waveForm = wf;
+    }
+
+    public void setVolume(float v) {
+        volume = v;
     }
 
     public void stopSound() {
