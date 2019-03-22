@@ -136,7 +136,7 @@ public class Androne {
     }
 
     public int getVolumeProgress() {
-        int volumeProgress = (int) volume * 100;
+        int volumeProgress = (int) (volume * 100);
         Log.d(LOG_TAG, "Current volume received by seekbar: " + volumeProgress);
         return volumeProgress;
     }
