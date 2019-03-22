@@ -15,30 +15,30 @@ public class Androne {
     private float volume;
     private boolean isPlaying;
 
-    private static final double MAX_FREQUENCY = 20000.0;
-    private static final double MIN_FREQUENCY = 40.0;
-
-
-
     public static class Builder {
         private Pitch pitch;
         private WaveForm waveForm;
+
         public Builder setPitch(double f) {
             pitch = new Pitch(f);
             return this;
         }
+
         public Builder setPitch(String pitchName) {
             pitch = new Pitch(pitchName);
             return this;
         }
+
         public Builder setPitch(Pitch p) {
             pitch = p;
             return this;
         }
+
         public Builder setWaveForm(WaveForm wf) {
             waveForm = wf;
             return this;
         }
+
         public Androne build() {
             if (pitch == null || waveForm == null) {
                 throw new IllegalStateException("pitch and waveform are both required");
@@ -70,7 +70,7 @@ public class Androne {
         }
     }
 
-    public void setFrequency(double f) {
+    public void setFrequency(double f) throws IllegalArgumentException {
         pitch = new Pitch(f);
         if (androneThread != null) {
             androneThread.setFrequency(f);
@@ -141,44 +141,41 @@ public class Androne {
         return volumeProgress;
     }
 
-    public void incrementFrequency() {
-        if (getFrequency() + 1 <= MAX_FREQUENCY) {
-            pitch = new Pitch(getFrequency() + 1);
-        } else {
-            throw new IllegalArgumentException("Maximum Frequency Allowed is " + MAX_FREQUENCY);
-        }
+    public void incrementFrequency() throws IllegalArgumentException {
+
+        pitch = new Pitch(getFrequency() + 1);
+
         if (androneThread != null) {
             androneThread.setFrequency(pitch.getFrequency());
         }
     }
 
-    public void decrementFrequency() {
-        if (getFrequency() - 1 >= MIN_FREQUENCY) {
-            pitch = new Pitch(getFrequency() - 1);
-        } else {
-            throw new IllegalArgumentException("Minimum Frequency Allowed is " + MIN_FREQUENCY);
-        }
+    public void decrementFrequency() throws IllegalArgumentException {
+
+        pitch = new Pitch(getFrequency() - 1);
+
         if (androneThread != null) {
             androneThread.setFrequency(pitch.getFrequency());
         }
     }
 
     public void incrementPitch() {
-        // TODO
+
         if (pitch.getPitchListIndex() + 1 < Pitch.getPitchListSize()) {
             pitch = Pitch.atIndex(pitch.getPitchListIndex() + 1);
-        }
-        if (androneThread != null) {
-            androneThread.setFrequency(pitch.getFrequency());
+            if (androneThread != null) {
+                androneThread.setFrequency(pitch.getFrequency());
+            }
         }
     }
 
     public void decrementPitch() {
+
         if (pitch.getPitchListIndex() - 1 >= 0) {
             pitch = Pitch.atIndex(pitch.getPitchListIndex() - 1);
-        }
-        if (androneThread != null) {
-            androneThread.setFrequency(pitch.getFrequency());
+            if (androneThread != null) {
+                androneThread.setFrequency(pitch.getFrequency());
+            }
         }
     }
 

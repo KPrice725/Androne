@@ -20,10 +20,12 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.boxnotfound.sinewavegenerator.R;
 import com.boxnotfound.sinewavegenerator.constants.WaveForm;
 import com.boxnotfound.sinewavegenerator.instance.Androne;
+import com.boxnotfound.sinewavegenerator.instance.Pitch;
 
 import java.util.ArrayList;
 
@@ -61,8 +63,19 @@ public class AndroneViewAdapter extends RecyclerView.Adapter<AndroneViewAdapter.
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     String newFrequency = v.getText().toString();
                     if (newFrequency.length() > 0) {
-                        androne.setFrequency(Double.valueOf(newFrequency));
-                        notifyItemChanged(viewHolder.getAdapterPosition());
+                        final double frequencyValue = Double.valueOf(newFrequency);
+                        try {
+                            androne.setFrequency(frequencyValue);
+                        } catch (IllegalArgumentException e) {
+                            Toast.makeText(context, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                            if (frequencyValue > Pitch.getMaxFrequency()) {
+                                androne.setFrequency(Pitch.getMaxFrequency());
+                            } else {
+                                androne.setFrequency(Pitch.getMinFrequency());
+                            }
+                        } finally {
+                            notifyItemChanged(viewHolder.getAdapterPosition());
+                        }
                         return true;
                     }
                 }
@@ -149,16 +162,29 @@ public class AndroneViewAdapter extends RecyclerView.Adapter<AndroneViewAdapter.
         viewHolder.androneFrequencyIncrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                androne.incrementFrequency();
-                notifyItemChanged(viewHolder.getAdapterPosition());
+                try {
+                    androne.incrementFrequency();
+                } catch (IllegalArgumentException e) {
+                    Toast.makeText(context, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    androne.setFrequency(Pitch.getMaxFrequency());
+                } finally {
+                    notifyItemChanged(viewHolder.getAdapterPosition());
+                }
+
             }
         });
 
         viewHolder.androneFrequencyDecrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                androne.decrementFrequency();
-                notifyItemChanged(viewHolder.getAdapterPosition());
+                try {
+                    androne.decrementFrequency();
+                } catch (IllegalArgumentException e) {
+                    Toast.makeText(context, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    androne.setFrequency(Pitch.getMinFrequency());
+                } finally {
+                    notifyItemChanged(viewHolder.getAdapterPosition());
+                }
             }
         });
 

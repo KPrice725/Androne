@@ -17,6 +17,10 @@ public class Pitch {
     private static ArrayList<Pitch> pitchList;
     private static final String LOG_TAG = Pitch.class.getSimpleName();
 
+    private static final double MAX_FREQUENCY = 20000.0;
+    private static final double MIN_FREQUENCY = 40.0;
+
+
     private Pitch(String pitch, double frequency, int pitchListIndex) {
         this.pitch = pitch;
         this.frequency = frequency;
@@ -24,7 +28,7 @@ public class Pitch {
         cents = 0;
     }
 
-    public Pitch(String pitch) {
+    public Pitch(String pitch) throws IllegalArgumentException {
         Log.d(LOG_TAG, "Pitch(String pitch) constructor called!");
         this.pitch = pitch;
         for (int i = 0; i < pitchList.size(); i++) {
@@ -41,8 +45,11 @@ public class Pitch {
         cents = 0;
     }
 
-    public Pitch(double frequency) {
+    public Pitch(double frequency) throws IllegalArgumentException {
         Log.d(LOG_TAG, "Pitch(double frequency) constructor called!");
+        if (frequency > MAX_FREQUENCY || frequency < MIN_FREQUENCY) {
+            throw new IllegalArgumentException("Pitch Frequency must be between " + MIN_FREQUENCY + " and " + MAX_FREQUENCY + " hz!");
+        }
         this.frequency = frequency;
         double pitchDifference = 0.0;
 
@@ -168,5 +175,13 @@ public class Pitch {
 
     public static int getPitchListSize() {
         return pitchList.size();
+    }
+
+    public static double getMaxFrequency() {
+        return MAX_FREQUENCY;
+    }
+
+    public static double getMinFrequency() {
+        return MIN_FREQUENCY;
     }
 }
