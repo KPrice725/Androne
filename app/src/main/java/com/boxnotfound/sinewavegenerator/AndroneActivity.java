@@ -1,16 +1,10 @@
 package com.boxnotfound.sinewavegenerator;
 
-import android.media.AudioAttributes;
-import android.media.AudioFormat;
-import android.media.AudioManager;
-import android.media.AudioTrack;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import com.boxnotfound.sinewavegenerator.constants.WaveForm;
@@ -20,9 +14,9 @@ import com.boxnotfound.sinewavegenerator.ui.AndroneViewAdapter;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class AndroneActivity extends AppCompatActivity {
 
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final String LOG_TAG = AndroneActivity.class.getSimpleName();
     private static final double defaultFrequency = 440.0;
     private Androne sineAndrone, squareAndrone, triangleAndrone, sawtoothAndrone;
     private RecyclerView androneView;
@@ -32,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_androne);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -42,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         androneList = new ArrayList<>();
         androneList.add(new Androne.Builder().setPitch("A4").setWaveForm(WaveForm.SINE).build());
-        androneViewAdapter = new AndroneViewAdapter(MainActivity.this, androneList);
+        androneViewAdapter = new AndroneViewAdapter(AndroneActivity.this, androneList);
 
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
