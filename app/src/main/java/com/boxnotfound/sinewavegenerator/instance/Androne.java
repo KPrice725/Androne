@@ -10,20 +10,14 @@ public class Androne {
     private static final String LOG_TAG = Androne.class.getSimpleName();
     private AndroneThread androneThread;
     private Pitch pitch;
-    private Waveform waveForm;
+    private Waveform Waveform;
     private float volume;
     private boolean isPlaying;
 
     public static class Builder {
         private Pitch pitch;
-<<<<<<< HEAD
-        private WaveForm waveForm;
+        private Waveform Waveform;
 
-||||||| merged common ancestors
-        private WaveForm waveForm;
-=======
-        private Waveform waveForm;
->>>>>>> ab6d8154abaed766b9b2c949162ca5831a5a4f94
         public Builder setPitch(double f) {
             pitch = new Pitch(f);
             return this;
@@ -38,29 +32,23 @@ public class Androne {
             pitch = p;
             return this;
         }
-<<<<<<< HEAD
 
-        public Builder setWaveForm(WaveForm wf) {
-||||||| merged common ancestors
-        public Builder setWaveForm(WaveForm wf) {
-=======
-        public Builder setWaveForm(Waveform wf) {
->>>>>>> ab6d8154abaed766b9b2c949162ca5831a5a4f94
-            waveForm = wf;
+        public Builder setWaveform(Waveform wf) {
+            Waveform = wf;
             return this;
         }
 
         public Androne build() {
-            if (pitch == null || waveForm == null) {
-                throw new IllegalStateException("pitch and waveform are both required");
+            if (pitch == null || Waveform == null) {
+                throw new IllegalStateException("pitch and Waveform are both required");
             }
-            return new Androne(pitch, waveForm);
+            return new Androne(pitch, Waveform);
         }
     }
 
     private Androne(Pitch p, Waveform wf) {
         pitch = p;
-        waveForm = wf;
+        Waveform = wf;
         volume = 1.0f;
         isPlaying = false;
     }
@@ -71,7 +59,7 @@ public class Androne {
                 isPlaying = true;
                 androneThread = new AndroneThread.Builder()
                         .setFrequency(pitch.getFrequency())
-                        .setWaveForm(waveForm)
+                        .setWaveform(Waveform)
                         .setVolume(volume)
                         .build();
                 androneThread.start();
@@ -92,15 +80,15 @@ public class Androne {
         return pitch.getFrequency();
     }
 
-    public void setWaveForm(Waveform wf) {
-        waveForm = wf;
+    public void setWaveform(Waveform wf) {
+        Waveform = wf;
         if (androneThread != null) {
-            androneThread.setWaveForm(wf);
+            androneThread.setWaveform(wf);
         }
     }
 
-    public Waveform getWaveForm() {
-        return waveForm;
+    public Waveform getWaveform() {
+        return Waveform;
     }
 
     public void stopAndrone() {

@@ -53,7 +53,7 @@ public class AndroneActivity extends AppCompatActivity {
         androneView = findViewById(R.id.rv_androne);
 
         androneList = new ArrayList<>();
-        androneList.add(new Androne.Builder().setPitch("A4").setWaveForm(Waveform.SINE).build());
+        androneList.add(new Androne.Builder().setPitch("A4").setWaveform(Waveform.SINE).build());
         androneViewAdapter = new AndroneViewAdapter(AndroneActivity.this, androneList);
 
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -67,7 +67,7 @@ public class AndroneActivity extends AppCompatActivity {
         if (sineAndrone == null) {
             sineAndrone = new Androne.Builder()
                     .setPitch(defaultFrequency)
-                    .setWaveForm(Waveform.SINE)
+                    .setWaveform(Waveform.SINE)
                     .build();
         }
         sineAndrone.startAndrone();
@@ -83,7 +83,7 @@ public class AndroneActivity extends AppCompatActivity {
         if (squareAndrone == null) {
             squareAndrone = new Androne.Builder()
                     .setPitch(defaultFrequency)
-                    .setWaveForm(Waveform.SQUARE)
+                    .setWaveform(Waveform.SQUARE)
                     .build();
         }
         squareAndrone.startAndrone();
@@ -99,7 +99,7 @@ public class AndroneActivity extends AppCompatActivity {
         if (triangleAndrone == null) {
             triangleAndrone = new Androne.Builder()
                     .setPitch(defaultFrequency)
-                    .setWaveForm(Waveform.TRIANGLE)
+                    .setWaveform(Waveform.TRIANGLE)
                     .build();
         }
         triangleAndrone.startAndrone();
@@ -115,7 +115,7 @@ public class AndroneActivity extends AppCompatActivity {
         if (sawtoothAndrone == null) {
             sawtoothAndrone = new Androne.Builder()
                     .setPitch(defaultFrequency)
-                    .setWaveForm(Waveform.SAWTOOTH)
+                    .setWaveform(Waveform.SAWTOOTH)
                     .build();
         }
         sawtoothAndrone.startAndrone();
@@ -128,7 +128,7 @@ public class AndroneActivity extends AppCompatActivity {
     }
 
     public void createAndrone(View view) {
-        Androne newAndrone = new Androne.Builder().setPitch("A4").setWaveForm(Waveform.SINE).build();
+        Androne newAndrone = new Androne.Builder().setPitch("A4").setWaveform(Waveform.SINE).build();
         androneList.add(newAndrone);
         androneViewAdapter.notifyItemInserted(androneList.indexOf(newAndrone));
     }
@@ -188,13 +188,13 @@ public class AndroneActivity extends AppCompatActivity {
                     return false;
                 }
             });
-            setSpinnerToValue(waveformSpinner, androne.getWaveForm().toString());
+            setSpinnerToValue(waveformSpinner, androne.getWaveform().toString());
             waveformSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if (viewHolder.waveformSpinnerTouched) {
                         String value = waveformSpinner.getSelectedItem().toString();
-                        androne.setWaveForm(Waveform.valueOf(value));
+                        androne.setWaveform(Waveform.valueOf(value));
                         viewHolder.waveformSpinnerTouched = false;
                     }
                 }
