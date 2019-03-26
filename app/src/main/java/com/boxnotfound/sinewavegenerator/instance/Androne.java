@@ -1,9 +1,8 @@
 package com.boxnotfound.sinewavegenerator.instance;
 
 import android.util.Log;
-import android.widget.Toast;
 
-import com.boxnotfound.sinewavegenerator.constants.WaveForm;
+import com.boxnotfound.sinewavegenerator.constants.Waveform;
 import com.boxnotfound.sinewavegenerator.thread.AndroneThread;
 
 public class Androne {
@@ -11,7 +10,7 @@ public class Androne {
     private static final String LOG_TAG = Androne.class.getSimpleName();
     private AndroneThread androneThread;
     private Pitch pitch;
-    private WaveForm waveForm;
+    private Waveform waveForm;
     private float volume;
     private boolean isPlaying;
 
@@ -22,7 +21,7 @@ public class Androne {
 
     public static class Builder {
         private Pitch pitch;
-        private WaveForm waveForm;
+        private Waveform waveForm;
         public Builder setPitch(double f) {
             pitch = new Pitch(f);
             return this;
@@ -35,7 +34,7 @@ public class Androne {
             pitch = p;
             return this;
         }
-        public Builder setWaveForm(WaveForm wf) {
+        public Builder setWaveForm(Waveform wf) {
             waveForm = wf;
             return this;
         }
@@ -47,7 +46,7 @@ public class Androne {
         }
     }
 
-    private Androne(Pitch p, WaveForm wf) {
+    private Androne(Pitch p, Waveform wf) {
         pitch = p;
         waveForm = wf;
         volume = 1.0f;
@@ -81,14 +80,14 @@ public class Androne {
         return pitch.getFrequency();
     }
 
-    public void setWaveForm(WaveForm wf) {
+    public void setWaveForm(Waveform wf) {
         waveForm = wf;
         if (androneThread != null) {
             androneThread.setWaveForm(wf);
         }
     }
 
-    public WaveForm getWaveForm() {
+    public Waveform getWaveForm() {
         return waveForm;
     }
 

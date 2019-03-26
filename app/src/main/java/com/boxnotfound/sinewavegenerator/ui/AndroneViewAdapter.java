@@ -22,7 +22,7 @@ import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.boxnotfound.sinewavegenerator.R;
-import com.boxnotfound.sinewavegenerator.constants.WaveForm;
+import com.boxnotfound.sinewavegenerator.constants.Waveform;
 import com.boxnotfound.sinewavegenerator.instance.Androne;
 
 import java.util.ArrayList;
@@ -88,7 +88,7 @@ public class AndroneViewAdapter extends RecyclerView.Adapter<AndroneViewAdapter.
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (viewHolder.waveformSpinnerTouched) {
                     String value = waveformSpinner.getSelectedItem().toString();
-                    androne.setWaveForm(WaveForm.valueOf(value));
+                    androne.setWaveForm(Waveform.valueOf(value));
                     viewHolder.waveformSpinnerTouched = false;
                 }
             }
