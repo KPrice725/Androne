@@ -1,21 +1,16 @@
 package com.boxnotfound.sinewavegenerator;
 
-import android.media.AudioAttributes;
-import android.media.AudioFormat;
-import android.media.AudioManager;
-import android.media.AudioTrack;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
-import com.boxnotfound.sinewavegenerator.constants.WaveForm;
-import com.boxnotfound.sinewavegenerator.instance.Androne;
-import com.boxnotfound.sinewavegenerator.instance.Pitch;
+import com.boxnotfound.sinewavegenerator.constants.Waveform;
+import com.boxnotfound.sinewavegenerator.model.Androne;
+import com.boxnotfound.sinewavegenerator.model.Pitch;
 import com.boxnotfound.sinewavegenerator.ui.AndroneViewAdapter;
 
 import java.util.ArrayList;
@@ -41,12 +36,13 @@ public class MainActivity extends AppCompatActivity {
         androneView = findViewById(R.id.rv_androne);
 
         androneList = new ArrayList<>();
-        androneList.add(new Androne.Builder().setPitch("A4").setWaveForm(WaveForm.SINE).build());
+        androneList.add(new Androne.Builder().setPitch("A4").setWaveform(Waveform.SINE).build());
         androneViewAdapter = new AndroneViewAdapter(MainActivity.this, androneList);
 
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         androneView.setLayoutManager(manager);
+        androneView.addItemDecoration(new DividerItemDecoration(androneView.getContext(), manager.getOrientation()));
         androneView.setAdapter(androneViewAdapter);
 
     }
@@ -55,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         if (sineAndrone == null) {
             sineAndrone = new Androne.Builder()
                     .setPitch(defaultFrequency)
-                    .setWaveForm(WaveForm.SINE)
+                    .setWaveform(Waveform.SINE)
                     .build();
         }
         sineAndrone.startAndrone();
@@ -71,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         if (squareAndrone == null) {
             squareAndrone = new Androne.Builder()
                     .setPitch(defaultFrequency)
-                    .setWaveForm(WaveForm.SQUARE)
+                    .setWaveform(Waveform.SQUARE)
                     .build();
         }
         squareAndrone.startAndrone();
@@ -87,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         if (triangleAndrone == null) {
             triangleAndrone = new Androne.Builder()
                     .setPitch(defaultFrequency)
-                    .setWaveForm(WaveForm.TRIANGLE)
+                    .setWaveform(Waveform.TRIANGLE)
                     .build();
         }
         triangleAndrone.startAndrone();
@@ -103,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         if (sawtoothAndrone == null) {
             sawtoothAndrone = new Androne.Builder()
                     .setPitch(defaultFrequency)
-                    .setWaveForm(WaveForm.SAWTOOTH)
+                    .setWaveform(Waveform.SAWTOOTH)
                     .build();
         }
         sawtoothAndrone.startAndrone();
@@ -116,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createAndrone(View view) {
-
+        Androne newAndrone = new Androne.Builder().setPitch("A4").setWaveform(Waveform.SINE).build();
+        androneList.add(newAndrone);
+        androneViewAdapter.notifyItemInserted(androneList.indexOf(newAndrone));
     }
 }

@@ -5,7 +5,7 @@ import android.media.AudioFormat;
 import android.media.AudioTrack;
 import android.util.Log;
 
-import com.boxnotfound.sinewavegenerator.constants.WaveForm;
+import com.boxnotfound.sinewavegenerator.constants.Waveform;
 
 public class AndroneThread extends Thread {
 
@@ -13,34 +13,42 @@ public class AndroneThread extends Thread {
     private boolean soundOn;
     private static int sampleRate = 44100;
     private double frequency;
-    private WaveForm waveForm;
+    private Waveform Waveform;
+    private float volume = -1.0f;
 
     public static class Builder {
         private double frequency;
-        private WaveForm waveForm;
+        private Waveform Waveform;
+        private float volume;
 
         public Builder setFrequency(double f) {
             frequency = f;
             return this;
         }
 
-        public Builder setWaveForm(WaveForm wf) {
-            waveForm = wf;
+        public Builder setWaveform(Waveform wf) {
+            Waveform = wf;
+            return this;
+        }
+
+        public Builder setVolume(float v) {
+            volume = v;
             return this;
         }
 
         public AndroneThread build() {
-            if (frequency == 0.0 || waveForm == null) {
-                throw new IllegalStateException("frequency and waveform are both required");
+            if (frequency == 0.0 || Waveform == null || volume == -1.0f) {
+                throw new IllegalStateException("frequency and Waveform are both required");
             }
-            return new AndroneThread(frequency, waveForm);
+            return new AndroneThread(frequency, Waveform, volume);
         }
 
     }
 
-    private AndroneThread(double f, WaveForm wf) {
+    private AndroneThread(double f, Waveform wf, float v) {
         frequency = f;
-        waveForm = wf;
+        Waveform = wf;
+        volume = v;
     }
 
     @Override
@@ -75,7 +83,7 @@ public class AndroneThread extends Thread {
         label:
         while (soundOn) {
             double freq = frequency;
-            switch (waveForm) {
+            switch (Waveform) {
                 case SINE:
                     Log.i(LOG_TAG, "Sine Wave Sampling Started");
                     for (int i = 0; i < sample.length; i++) {
@@ -124,10 +132,11 @@ public class AndroneThread extends Thread {
                     }
                     break;
                 default:
-                    Log.e(LOG_TAG, "Unknown WaveForm Selected");
+                    Log.e(LOG_TAG, "Unknown Waveform Selected");
                     soundOn = false;
                     break label;
             }
+            track.setVolume(volume);
             track.write(sample, 0, sample.length);
             Log.d(LOG_TAG, "Phase after write: " + currentPhase);
         }
@@ -139,8 +148,12 @@ public class AndroneThread extends Thread {
         frequency = f;
     }
 
-    public void setWaveForm(WaveForm wf) {
-        waveForm = wf;
+    public void setWaveform(Waveform wf) {
+        Waveform = wf;
+    }
+
+    public void setVolume(float v) {
+        volume = v;
     }
 
     public void stopSound() {

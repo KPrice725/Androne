@@ -1,5 +1,5 @@
 package com.boxnotfound.sinewavegenerator.constants;
 
-public enum WaveForm {
+public enum Waveform {
     SINE, SQUARE, TRIANGLE, SAWTOOTH
 }
