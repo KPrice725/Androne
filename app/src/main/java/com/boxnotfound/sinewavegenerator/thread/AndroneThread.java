@@ -5,7 +5,7 @@ import android.media.AudioFormat;
 import android.media.AudioTrack;
 import android.util.Log;
 
-import com.boxnotfound.sinewavegenerator.constants.WaveForm;
+import com.boxnotfound.sinewavegenerator.constants.Waveform;
 
 public class AndroneThread extends Thread {
 
@@ -13,12 +13,12 @@ public class AndroneThread extends Thread {
     private boolean soundOn;
     private static int sampleRate = 44100;
     private double frequency;
-    private WaveForm waveForm;
+    private Waveform waveForm;
     private float volume = -1.0f;
 
     public static class Builder {
         private double frequency;
-        private WaveForm waveForm;
+        private Waveform waveForm;
         private float volume;
 
         public Builder setFrequency(double f) {
@@ -26,7 +26,7 @@ public class AndroneThread extends Thread {
             return this;
         }
 
-        public Builder setWaveForm(WaveForm wf) {
+        public Builder setWaveForm(Waveform wf) {
             waveForm = wf;
             return this;
         }
@@ -45,7 +45,7 @@ public class AndroneThread extends Thread {
 
     }
 
-    private AndroneThread(double f, WaveForm wf, float v) {
+    private AndroneThread(double f, Waveform wf, float v) {
         frequency = f;
         waveForm = wf;
         volume = v;
@@ -132,7 +132,7 @@ public class AndroneThread extends Thread {
                     }
                     break;
                 default:
-                    Log.e(LOG_TAG, "Unknown WaveForm Selected");
+                    Log.e(LOG_TAG, "Unknown Waveform Selected");
                     soundOn = false;
                     break label;
             }
@@ -148,7 +148,7 @@ public class AndroneThread extends Thread {
         frequency = f;
     }
 
-    public void setWaveForm(WaveForm wf) {
+    public void setWaveForm(Waveform wf) {
         waveForm = wf;
     }
 
