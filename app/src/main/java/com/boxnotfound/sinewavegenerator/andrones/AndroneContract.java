@@ -3,7 +3,7 @@ package com.boxnotfound.sinewavegenerator.andrones;
 import com.boxnotfound.sinewavegenerator.BasePresenter;
 import com.boxnotfound.sinewavegenerator.BaseView;
 import com.boxnotfound.sinewavegenerator.constants.Waveform;
-import com.boxnotfound.sinewavegenerator.instance.Androne;
+import com.boxnotfound.sinewavegenerator.model.Androne;
 
 import java.util.List;
 

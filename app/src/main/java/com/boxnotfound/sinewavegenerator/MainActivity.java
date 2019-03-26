@@ -1,22 +1,16 @@
 package com.boxnotfound.sinewavegenerator;
 
-import android.media.AudioAttributes;
-import android.media.AudioFormat;
-import android.media.AudioManager;
-import android.media.AudioTrack;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import com.boxnotfound.sinewavegenerator.constants.Waveform;
-import com.boxnotfound.sinewavegenerator.instance.Androne;
-import com.boxnotfound.sinewavegenerator.instance.Pitch;
+import com.boxnotfound.sinewavegenerator.model.Androne;
+import com.boxnotfound.sinewavegenerator.model.Pitch;
 import com.boxnotfound.sinewavegenerator.ui.AndroneViewAdapter;
 
 import java.util.ArrayList;

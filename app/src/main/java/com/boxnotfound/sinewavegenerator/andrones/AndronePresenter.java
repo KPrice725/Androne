@@ -3,7 +3,7 @@ package com.boxnotfound.sinewavegenerator.andrones;
 import android.support.annotation.NonNull;
 
 import com.boxnotfound.sinewavegenerator.constants.Waveform;
-import com.boxnotfound.sinewavegenerator.instance.Androne;
+import com.boxnotfound.sinewavegenerator.model.Androne;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

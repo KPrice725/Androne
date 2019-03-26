@@ -27,8 +27,8 @@ import android.widget.TextView;
 
 import com.boxnotfound.sinewavegenerator.R;
 import com.boxnotfound.sinewavegenerator.constants.Waveform;
-import com.boxnotfound.sinewavegenerator.instance.Androne;
-import com.boxnotfound.sinewavegenerator.instance.Pitch;
+import com.boxnotfound.sinewavegenerator.model.Androne;
+import com.boxnotfound.sinewavegenerator.model.Pitch;
 
 import java.util.ArrayList;
 

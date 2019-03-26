@@ -1,4 +1,4 @@
-package com.boxnotfound.sinewavegenerator.instance;
+package com.boxnotfound.sinewavegenerator.model;
 
 import android.content.Context;
 import android.util.Log;
