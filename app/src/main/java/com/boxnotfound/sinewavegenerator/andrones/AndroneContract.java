@@ -37,6 +37,9 @@ public interface AndroneContract {
 
         void stopAndrone();
 
+        void deleteAndrone();
+
+        void deleteAllAndrones();
 
     }
 
