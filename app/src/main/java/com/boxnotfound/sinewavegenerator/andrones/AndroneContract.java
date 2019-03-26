@@ -2,17 +2,45 @@ package com.boxnotfound.sinewavegenerator.andrones;
 
 import com.boxnotfound.sinewavegenerator.BasePresenter;
 import com.boxnotfound.sinewavegenerator.BaseView;
+import com.boxnotfound.sinewavegenerator.constants.Waveform;
 import com.boxnotfound.sinewavegenerator.instance.Androne;
 
 import java.util.List;
 
 public interface AndroneContract {
 
-    interface Presenter implements BasePresenter {
+    interface Presenter extends BasePresenter {
+
+        void loadAndrones();
+
+        void addAndrone(Androne androne);
+
+        void setPitch(double frequency);
+
+        void setPitch(String pitchName);
+
+        void incrementFrequency();
+
+        void decrementFrequency();
+
+        void incrementPitch();
+
+        void decrementPitch();
+
+        void setWaveform(Waveform waveform);
+
+        void setVolume(float volume);
+
+        void setVolume(int volumeProgress);
+
+        void playAndrone();
+
+        void stopAndrone();
+
 
     }
 
-    interface View implements BaseView<Presenter> {
+    interface View extends BaseView<Presenter> {
 
         void displayAndrones(List<Androne> list);
 
@@ -22,11 +50,15 @@ public interface AndroneContract {
 
         void displayDeleteAndrone();
 
-        void displaySetPitch();
+        void displayAndronePitch();
 
-        void displaySetWaveform();
+        void displayAndroneWaveform();
 
-        void displaySetVolume();
+        void displayAndroneVolume();
+
+        void displayAndronePlaying();
+
+        void displayAndroneStopped();
 
 
 
