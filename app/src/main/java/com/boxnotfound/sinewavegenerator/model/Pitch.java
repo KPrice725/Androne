@@ -15,7 +15,9 @@ import java.util.Arrays;
 @Entity(tableName = "pitch_table")
 public class Pitch {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     @ColumnInfo(name = "pitch_name")
     private String pitch;
 
@@ -176,6 +178,8 @@ public class Pitch {
         }
         throw new IllegalArgumentException("Could not locate Middle C");
     }
+
+    public int getId() { return id; }
 
     public double getFrequency() {
         return frequency;
