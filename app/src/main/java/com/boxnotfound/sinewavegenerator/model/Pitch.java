@@ -1,5 +1,9 @@
 package com.boxnotfound.sinewavegenerator.model;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
 import android.content.Context;
 import android.util.Log;
 
@@ -8,16 +12,34 @@ import com.boxnotfound.sinewavegenerator.R;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+@Entity(tableName = "pitch_table")
 public class Pitch {
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @ColumnInfo(name = "pitch_name")
     private String pitch;
+
+    @ColumnInfo(name = "frequency")
     private double frequency;
+
+    @ColumnInfo(name = "cents")
     private int cents;
+
+    @Ignore
     private int pitchListIndex;
+
+    @Ignore
     private static ArrayList<Pitch> pitchList;
+
+    @Ignore
     private static final String LOG_TAG = Pitch.class.getSimpleName();
 
+    @Ignore
     private static final double MAX_FREQUENCY = 20000.0;
+
+    @Ignore
     private static final double MIN_FREQUENCY = 40.0;
 
 
@@ -156,6 +178,8 @@ public class Pitch {
         }
         throw new IllegalArgumentException("Could not locate Middle C");
     }
+
+    public int getId() { return id; }
 
     public double getFrequency() {
         return frequency;
