@@ -77,14 +77,14 @@ public class AndroneRepository {
         new deleteAllAndronesAsyncTask(androneDao).execute();
     }
 
-    private static class deleteAllAndronesAsyncTask extends AsyncTask<Androne, Void, Void> {
+    private static class deleteAllAndronesAsyncTask extends AsyncTask<Void, Void, Void> {
 
         private AndroneDao asyncAndroneDao;
 
         deleteAllAndronesAsyncTask(AndroneDao dao) { asyncAndroneDao = dao; }
 
         @Override
-        protected Void doInBackground(Androne... params) {
+        protected Void doInBackground(Void... params) {
             asyncAndroneDao.deleteAllAndrones();
             return null;
         }
