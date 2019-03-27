@@ -15,9 +15,7 @@ import java.util.Arrays;
 @Entity(tableName = "pitch_table")
 public class Pitch {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
-
+    @PrimaryKey
     @ColumnInfo(name = "pitch_name")
     private String pitch;
 
