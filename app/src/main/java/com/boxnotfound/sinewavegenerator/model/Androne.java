@@ -8,6 +8,8 @@ import android.arch.persistence.room.TypeConverters;
 import android.util.Log;
 
 import com.boxnotfound.sinewavegenerator.constants.Waveform;
+import com.boxnotfound.sinewavegenerator.model.room.PitchConverter;
+import com.boxnotfound.sinewavegenerator.model.room.WaveformConverter;
 import com.boxnotfound.sinewavegenerator.thread.AndroneThread;
 
 @Entity(tableName = "androne_table")
