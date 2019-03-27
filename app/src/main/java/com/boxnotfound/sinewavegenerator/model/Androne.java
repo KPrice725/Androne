@@ -1,19 +1,43 @@
 package com.boxnotfound.sinewavegenerator.model;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
 import android.util.Log;
 
 import com.boxnotfound.sinewavegenerator.constants.Waveform;
 import com.boxnotfound.sinewavegenerator.thread.AndroneThread;
 
+@Entity(tableName = "androne_table")
 public class Androne {
 
-    private static final String LOG_TAG = Androne.class.getSimpleName();
-    private AndroneThread androneThread;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @ColumnInfo(name = "androne_name")
     private String androneName;
+
+    @ColumnInfo(name = "frequency")
+    @TypeConverters({PitchConverter.class})
     private Pitch pitch;
-    private Waveform Waveform;
+
+    @ColumnInfo(name = "waveform")
+    @TypeConverters({WaveformConverter.class})
+    private Waveform waveform;
+
+    @ColumnInfo(name = "current_volume")
     private float volume;
+
+    @Ignore
+    private AndroneThread androneThread;
+
+    @Ignore
     private boolean isPlaying;
+
+    @Ignore
+    private static final String LOG_TAG = Androne.class.getSimpleName();
 
     public static class Builder {
         private Pitch pitch;
@@ -49,7 +73,7 @@ public class Androne {
 
     private Androne(Pitch p, Waveform wf) {
         pitch = p;
-        Waveform = wf;
+        waveform = wf;
         volume = 1.0f;
         androneName = "default name";
         isPlaying = false;
@@ -61,7 +85,7 @@ public class Androne {
                 isPlaying = true;
                 androneThread = new AndroneThread.Builder()
                         .setFrequency(pitch.getFrequency())
-                        .setWaveform(Waveform)
+                        .setWaveform(waveform)
                         .setVolume(volume)
                         .build();
                 androneThread.start();
@@ -83,14 +107,14 @@ public class Androne {
     }
 
     public void setWaveform(Waveform wf) {
-        Waveform = wf;
+        waveform = wf;
         if (androneThread != null) {
             androneThread.setWaveform(wf);
         }
     }
 
     public Waveform getWaveform() {
-        return Waveform;
+        return waveform;
     }
 
     public void stopAndrone() {
