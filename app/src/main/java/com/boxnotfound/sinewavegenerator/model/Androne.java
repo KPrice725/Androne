@@ -147,6 +147,14 @@ public class Androne {
         }
     }
 
+    public void setVolume(float v) {
+        volume = v;
+    }
+
+    public float getVolume() {
+        return volume;
+    }
+
     public void setVolumeProgress(int progress) {
         if (progress > 100) {
             progress = 100;
