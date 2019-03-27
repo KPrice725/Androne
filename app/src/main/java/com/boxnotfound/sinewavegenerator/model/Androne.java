@@ -16,7 +16,7 @@ public class Androne {
 
     public static class Builder {
         private Pitch pitch;
-        private Waveform Waveform;
+        private Waveform waveform;
 
         public Builder setPitch(double f) {
             pitch = new Pitch(f);
@@ -34,15 +34,15 @@ public class Androne {
         }
 
         public Builder setWaveform(Waveform wf) {
-            Waveform = wf;
+            waveform = wf;
             return this;
         }
 
         public Androne build() {
-            if (pitch == null || Waveform == null) {
+            if (pitch == null || waveform == null) {
                 throw new IllegalStateException("pitch and Waveform are both required");
             }
-            return new Androne(pitch, Waveform);
+            return new Androne(pitch, waveform);
         }
     }
 
