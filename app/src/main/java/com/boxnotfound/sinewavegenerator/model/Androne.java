@@ -9,6 +9,7 @@ public class Androne {
 
     private static final String LOG_TAG = Androne.class.getSimpleName();
     private AndroneThread androneThread;
+    private String androneName;
     private Pitch pitch;
     private Waveform Waveform;
     private float volume;
@@ -50,6 +51,7 @@ public class Androne {
         pitch = p;
         Waveform = wf;
         volume = 1.0f;
+        androneName = "default name";
         isPlaying = false;
     }
 
@@ -138,6 +140,14 @@ public class Androne {
         int volumeProgress = (int) (volume * 100);
         Log.d(LOG_TAG, "Current volume received by seekbar: " + volumeProgress);
         return volumeProgress;
+    }
+
+    public String getAndroneName() {
+        return androneName;
+    }
+
+    public void setAndroneName(String androneName) {
+        this.androneName = androneName;
     }
 
     public void incrementFrequency() throws IllegalArgumentException {
