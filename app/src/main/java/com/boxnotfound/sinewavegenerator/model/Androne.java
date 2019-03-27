@@ -97,6 +97,10 @@ public class Androne {
         }
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setFrequency(double f) throws IllegalArgumentException {
         pitch = new Pitch(f);
         if (androneThread != null) {
