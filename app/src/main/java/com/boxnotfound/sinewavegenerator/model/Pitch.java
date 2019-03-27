@@ -177,8 +177,6 @@ public class Pitch {
         throw new IllegalArgumentException("Could not locate Middle C");
     }
 
-    public int getId() { return id; }
-
     public double getFrequency() {
         return frequency;
     }
