@@ -153,6 +153,7 @@ public class Pitch {
     //formula for calculating pitch frequency: pitch of A4 * 2 ^ ((number of semitones away from C4 - 9) / 12).
     //A4 is typically 440hz, but this value can differ depending on region
     // TODO: add functionality to allow user to customize A4 based on preference, adjust pitch series
+    // TODO: Integrate this with new Room PitchRepository
     public static void instantiatePitches(Context context) {
 
         if (pitchList == null) {
