@@ -10,7 +10,7 @@ import com.boxnotfound.sinewavegenerator.model.AndroneDao;
 import com.boxnotfound.sinewavegenerator.model.Pitch;
 import com.boxnotfound.sinewavegenerator.model.PitchDao;
 
-@Database(entities = {Androne.class, Pitch.class}, version = 1)
+@Database(entities = {Androne.class, Pitch.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract AndroneDao androneDao();
