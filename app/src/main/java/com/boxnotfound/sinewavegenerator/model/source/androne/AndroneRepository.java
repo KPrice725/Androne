@@ -1,16 +1,17 @@
-package com.boxnotfound.sinewavegenerator.model.source;
+package com.boxnotfound.sinewavegenerator.model.source.androne;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 
 import com.boxnotfound.sinewavegenerator.model.Androne;
-import com.boxnotfound.sinewavegenerator.model.room.AppDatabase;
-import com.boxnotfound.sinewavegenerator.model.source.AndroneDao;
+import com.boxnotfound.sinewavegenerator.model.source.AppDatabase;
+import com.boxnotfound.sinewavegenerator.model.source.androne.AndroneDao;
 
 import java.util.List;
 
-public class AndroneRepository {
+public class AndroneRepository implements AndroneDataSource {
 
     private AndroneDao androneDao;
     private LiveData<List<Androne>> allAndrones;
@@ -20,11 +21,16 @@ public class AndroneRepository {
         androneDao = db.androneDao();
         allAndrones = androneDao.getAllAndrones();
     }
+    @Override
+    public void getAllAndrones(@NonNull AndroneDataSource.LoadAndronesCallback callback) {
+        if (allAndrones == null) {
+            allAndrones = androneDao.getAllAndrones();
+        }
+        callback.onAndronesLoaded(allAndrones);
+    }
 
-    public LiveData<List<Androne>> getAllAndrones() { return allAndrones; }
-
-
-    public void insert(Androne androne) {
+    @Override
+    public void addAndrone(Androne androne) {
         new insertAndroneAsyncTask(androneDao).execute(androne);
     }
 
@@ -41,6 +47,7 @@ public class AndroneRepository {
         }
     }
 
+    @Override
     public void updateAndrone(final Androne androne) {
         new updateAndroneAsyncTask(androneDao).execute(androne);
     }
@@ -58,6 +65,7 @@ public class AndroneRepository {
         }
     }
 
+    @Override
     public void deleteAndrone(final Androne androne) {
         new deleteAndroneAsyncTask(androneDao).execute(androne);
     }
@@ -75,6 +83,7 @@ public class AndroneRepository {
         }
     }
 
+    @Override
     public void deleteAllAndrones() {
         new deleteAllAndronesAsyncTask(androneDao).execute();
     }

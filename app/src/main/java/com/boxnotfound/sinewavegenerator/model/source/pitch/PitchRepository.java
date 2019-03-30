@@ -1,16 +1,17 @@
-package com.boxnotfound.sinewavegenerator.model.source;
+package com.boxnotfound.sinewavegenerator.model.source.pitch;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 
 import com.boxnotfound.sinewavegenerator.model.Pitch;
-import com.boxnotfound.sinewavegenerator.model.room.AppDatabase;
-import com.boxnotfound.sinewavegenerator.model.source.PitchDao;
+import com.boxnotfound.sinewavegenerator.model.source.AppDatabase;
+import com.boxnotfound.sinewavegenerator.model.source.pitch.PitchDao;
 
 import java.util.List;
 
-public class PitchRepository {
+public class PitchRepository implements PitchDataSource {
 
     private PitchDao pitchDao;
     private LiveData<List<Pitch>> allPitches;
@@ -21,11 +22,30 @@ public class PitchRepository {
         allPitches = pitchDao.getAllPitches();
     }
 
-    public LiveData<List<Pitch>> getAllPitches() {
-        return allPitches;
+    @Override
+    public void getAllPitches(@NonNull PitchDataSource.LoadPitchesCallback callback) {
+        if (allPitches == null) {
+            allPitches = pitchDao.getAllPitches();
+        }
+        if (allPitches == null || allPitches.getValue().size() == 0) {
+            callback.onPitchesNotAvailable();
+        } else {
+            callback.onPitchesLoaded(allPitches);
+        }
     }
 
-    public void insert(final Pitch pitch) {
+    @Override
+    public void getPitch(@NonNull  String pitchName, @NonNull LoadPitchCallback callback) {
+        LiveData<Pitch> pitch = pitchDao.getPitch(pitchName);
+        if (pitch != null) {
+            callback.onPitchLoaded(pitch);
+        } else {
+            callback.onPitchNotAvailable();
+        }
+    }
+
+    @Override
+    public void addPitch(final Pitch pitch) {
         new insertPitchAsyncTask(pitchDao).execute(pitch);
     }
 
@@ -43,10 +63,7 @@ public class PitchRepository {
         }
     }
 
-    public LiveData<Pitch> getPitch(String pitchName) {
-        return pitchDao.getPitch(pitchName);
-    }
-
+    @Override
     public void deleteAllPitches() {
         new deleteAllPitchesAsyncTask(pitchDao).execute();
     }
@@ -64,5 +81,4 @@ public class PitchRepository {
             return null;
         }
     }
-
 }
