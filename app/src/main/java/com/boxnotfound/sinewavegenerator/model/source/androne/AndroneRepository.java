@@ -1,10 +1,12 @@
-package com.boxnotfound.sinewavegenerator.model;
+package com.boxnotfound.sinewavegenerator.model.source;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
+import com.boxnotfound.sinewavegenerator.model.Androne;
 import com.boxnotfound.sinewavegenerator.model.room.AppDatabase;
+import com.boxnotfound.sinewavegenerator.model.source.AndroneDao;
 
 import java.util.List;
 
