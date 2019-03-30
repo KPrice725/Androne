@@ -1,4 +1,4 @@
-package com.boxnotfound.sinewavegenerator.model.source;
+package com.boxnotfound.sinewavegenerator.model.source.androne;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;

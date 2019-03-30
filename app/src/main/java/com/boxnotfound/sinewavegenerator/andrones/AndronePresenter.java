@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.boxnotfound.sinewavegenerator.constants.Waveform;
 import com.boxnotfound.sinewavegenerator.model.Androne;
-import com.boxnotfound.sinewavegenerator.model.AndroneRepository;
+import com.boxnotfound.sinewavegenerator.model.source.androne.AndroneRepository;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
