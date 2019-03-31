@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 
 import com.boxnotfound.sinewavegenerator.model.Androne;
 import com.boxnotfound.sinewavegenerator.model.source.AppDatabase;
-import com.boxnotfound.sinewavegenerator.model.source.androne.AndroneDao;
 
 import java.util.List;
 
