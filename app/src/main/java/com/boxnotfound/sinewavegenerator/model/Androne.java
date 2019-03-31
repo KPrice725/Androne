@@ -41,41 +41,9 @@ public class Androne {
     @Ignore
     private static final String LOG_TAG = Androne.class.getSimpleName();
 
-    public static class Builder {
-        private Pitch pitch;
-        private Waveform waveform;
-
-        public Builder setPitch(double f) {
-            pitch = new Pitch(f);
-            return this;
-        }
-
-        public Builder setPitch(String pitchName) {
-            pitch = new Pitch(pitchName);
-            return this;
-        }
-
-        public Builder setPitch(Pitch p) {
-            pitch = p;
-            return this;
-        }
-
-        public Builder setWaveform(Waveform wf) {
-            waveform = wf;
-            return this;
-        }
-
-        public Androne build() {
-            if (pitch == null || waveform == null) {
-                throw new IllegalStateException("pitch and Waveform are both required");
-            }
-            return new Androne(pitch, waveform);
-        }
-    }
-
-    private Androne(Pitch p, Waveform wf) {
-        pitch = p;
-        waveform = wf;
+    public Androne(Pitch pitch, Waveform waveform) {
+        this.pitch = pitch;
+        this.waveform = waveform;
         volume = 1.0f;
         androneName = "default name";
         isPlaying = false;
@@ -99,6 +67,18 @@ public class Androne {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setPitchName(Pitch pitch) {
+        this.pitch = pitch;
+    }
+
+    public void setPlaying(boolean playing) {
+        isPlaying = playing;
     }
 
     public void setFrequency(double f) throws IllegalArgumentException {
@@ -142,11 +122,15 @@ public class Androne {
         }
     }
 
-    public String getPitch() {
-        return pitch.getPitch();
+    public Pitch getPitch() {
+        return pitch;
     }
 
-    public void setPitch(String pitchName) {
+    public String getPitchName() {
+        return pitch.getPitchName();
+    }
+
+    public void setPitchName(String pitchName) {
         pitch = new Pitch(pitchName);
         if (androneThread != null) {
             androneThread.setFrequency(pitch.getFrequency());

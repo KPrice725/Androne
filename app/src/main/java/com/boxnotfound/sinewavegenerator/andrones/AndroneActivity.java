@@ -36,7 +36,6 @@ public class AndroneActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = AndroneActivity.class.getSimpleName();
     private static final double defaultFrequency = 440.0;
-    private Androne sineAndrone, squareAndrone, triangleAndrone, sawtoothAndrone;
     private RecyclerView androneView;
     private ArrayList<Androne> androneList;
     private AndroneViewAdapter androneViewAdapter;
@@ -48,12 +47,12 @@ public class AndroneActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Pitch.instantiatePitches(this);
+        Pitch.instantiatePitchNames(this);
 
         androneView = findViewById(R.id.rv_androne);
 
         androneList = new ArrayList<>();
-        androneList.add(new Androne.Builder().setPitch("A4").setWaveform(Waveform.SINE).build());
+        androneList.add(new Androne(new Pitch("A4"), Waveform.SINE));
         androneViewAdapter = new AndroneViewAdapter(AndroneActivity.this, androneList);
 
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -63,72 +62,8 @@ public class AndroneActivity extends AppCompatActivity {
 
     }
 
-    public void startSine(View view) {
-        if (sineAndrone == null) {
-            sineAndrone = new Androne.Builder()
-                    .setPitch(defaultFrequency)
-                    .setWaveform(Waveform.SINE)
-                    .build();
-        }
-        sineAndrone.startAndrone();
-    }
-
-    public void stopSine(View view) {
-        if (sineAndrone != null) {
-            sineAndrone.stopAndrone();
-        }
-    }
-
-    public void startSquare(View view) {
-        if (squareAndrone == null) {
-            squareAndrone = new Androne.Builder()
-                    .setPitch(defaultFrequency)
-                    .setWaveform(Waveform.SQUARE)
-                    .build();
-        }
-        squareAndrone.startAndrone();
-    }
-
-    public void stopSquare(View view) {
-        if (squareAndrone != null) {
-            squareAndrone.stopAndrone();
-        }
-    }
-
-    public void startTriangle(View view) {
-        if (triangleAndrone == null) {
-            triangleAndrone = new Androne.Builder()
-                    .setPitch(defaultFrequency)
-                    .setWaveform(Waveform.TRIANGLE)
-                    .build();
-        }
-        triangleAndrone.startAndrone();
-    }
-
-    public void stopTriangle(View view) {
-        if (triangleAndrone != null) {
-            triangleAndrone.stopAndrone();
-        }
-    }
-
-    public void startSawtooth(View view) {
-        if (sawtoothAndrone == null) {
-            sawtoothAndrone = new Androne.Builder()
-                    .setPitch(defaultFrequency)
-                    .setWaveform(Waveform.SAWTOOTH)
-                    .build();
-        }
-        sawtoothAndrone.startAndrone();
-    }
-
-    public void stopSawtooth(View view) {
-        if (sawtoothAndrone != null) {
-            sawtoothAndrone.stopAndrone();
-        }
-    }
-
     public void createAndrone(View view) {
-        Androne newAndrone = new Androne.Builder().setPitch("A4").setWaveform(Waveform.SINE).build();
+        Androne newAndrone = new Androne(new Pitch("A4"), Waveform.SINE);
         androneList.add(newAndrone);
         androneViewAdapter.notifyItemInserted(androneList.indexOf(newAndrone));
     }
@@ -206,7 +141,7 @@ public class AndroneActivity extends AppCompatActivity {
             });
 
             final Spinner pitchSpinner = viewHolder.andronePitch;
-            setSpinnerToValue(pitchSpinner, androne.getPitch());
+            setSpinnerToValue(pitchSpinner, androne.getPitchName());
             pitchSpinner.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -221,7 +156,7 @@ public class AndroneActivity extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if (viewHolder.pitchSpinnerTouched) {
                         String value = pitchSpinner.getSelectedItem().toString();
-                        androne.setPitch(value);
+                        androne.setPitchName(value);
                         notifyItemChanged(viewHolder.getAdapterPosition());
                         viewHolder.pitchSpinnerTouched = false;
                     }
@@ -360,7 +295,7 @@ public class AndroneActivity extends AppCompatActivity {
         }
 
 //    private void updatePitchValues(Androne androne, ViewHolder viewHolder) {
-//        setSpinnerToValue(viewHolder.andronePitch, androne.getPitch());
+//        setSpinnerToValue(viewHolder.andronePitch, androne.getPitchName());
 //        viewHolder.androneFrequency.setText(String.valueOf(androne.getFrequency()));
 //        viewHolder.androneCents.setText(androne.getCents());
 //        notifyItemChanged(viewHolder.getAdapterPosition());
