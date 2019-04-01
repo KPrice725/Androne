@@ -13,7 +13,7 @@ import java.util.List;
 public class AndroneRepository implements AndroneDataSource {
 
     private AndroneDao androneDao;
-    private LiveData<List<Androne>> allAndrones;
+    private List<Androne> allAndrones;
 
     public AndroneRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);

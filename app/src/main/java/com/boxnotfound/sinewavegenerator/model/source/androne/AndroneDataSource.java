@@ -10,7 +10,7 @@ import java.util.List;
 public interface AndroneDataSource {
 
     interface LoadAndronesCallback {
-        void onAndronesLoaded(LiveData<List<Androne>> andrones);
+        void onAndronesLoaded(List<Androne> andrones);
 
         void onAndronesNotAvailable();
     }
