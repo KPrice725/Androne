@@ -1,9 +1,5 @@
 package com.boxnotfound.sinewavegenerator.model;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.PrimaryKey;
 import android.content.Context;
 import android.util.Log;
 
@@ -12,39 +8,29 @@ import com.boxnotfound.sinewavegenerator.R;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-@Entity(tableName = "pitch_table")
 public class Pitch {
 
     private static final String MIDDLE_C = "C4";
     private static double pitchStandardInHz = 440.0;
 
-    @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @ColumnInfo(name = "pitch_name")
     private String pitchName;
 
-    @ColumnInfo(name = "frequency")
     private double frequency;
 
-    @ColumnInfo(name = "cents")
     private int cents;
 
     private int pitchListIndex;
 
-    @Ignore
     private static ArrayList<String> pitchNames;
 
-    @Ignore
     private static final String LOG_TAG = Pitch.class.getSimpleName();
 
-    @Ignore
     private static final double MAX_FREQUENCY = 20000.0;
 
-    @Ignore
     private static final double MIN_FREQUENCY = 40.0;
 
-    @Ignore
     public Pitch(final String pitchName) throws IllegalArgumentException {
         Log.d(LOG_TAG, "Pitch(String pitchName) constructor called!");
         this.pitchName = pitchName;
@@ -168,6 +154,13 @@ public class Pitch {
 
         if (pitchNames == null) {
             pitchNames = new ArrayList<>(Arrays.asList(context.getResources().getStringArray(R.array.pitch_names)));
+        }
+    }
+
+    public static void releasePitchNames() {
+        if (pitchNames != null) {
+            pitchNames.clear();
+            pitchNames = null;
         }
     }
 

@@ -21,6 +21,9 @@ public interface AndroneDao {
     @Query("SELECT * FROM androne_table ORDER BY id ASC")
     LiveData<List<Androne>> getAllAndrones();
 
+    @Query("SELECT * FROM androne_table WHERE id = :id")
+    Androne getAndroneById(int id);
+
     @Update
     void updateAndrone(Androne androne);
 
