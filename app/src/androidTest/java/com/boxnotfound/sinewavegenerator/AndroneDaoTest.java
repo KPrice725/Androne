@@ -34,7 +34,8 @@ public class AndroneDaoTest {
 
     @Before
     public void setup() {
-        db = Room.inMemoryDatabaseBuilder(ApplicationProvider.getApplicationContext(), AppDatabase.class).build();
+        db = Room.inMemoryDatabaseBuilder(ApplicationProvider.getApplicationContext(),
+                AppDatabase.class).build();
         dao = db.androneDao();
         Pitch.instantiatePitchNames(ApplicationProvider.getApplicationContext());
         androne = new Androne(new Pitch(440.0), Waveform.SINE);
@@ -60,7 +61,9 @@ public class AndroneDaoTest {
 
         Androne loaded = dao.getAndroneById(androne.getId());
 
-        assertAndrone(loaded, androne.getId(), androne.getFrequency(), androne.getPitchName(), androne.getCents(), androne.getWaveform());
+        assertAndrone(loaded, androne.getId(),
+                androne.getFrequency(), androne.getPitchName(),
+                androne.getCents(), androne.getWaveform());
     }
 
     @Test
@@ -74,7 +77,9 @@ public class AndroneDaoTest {
 
         Androne loadedAndrone = dao.getAndroneById(ID);
 
-        assertAndrone(loadedAndrone, androne.getId(), newAndrone.getFrequency(), newAndrone.getPitchName(), newAndrone.getCents(), newAndrone.getWaveform());
+        assertAndrone(loadedAndrone, androne.getId(),
+                newAndrone.getFrequency(), newAndrone.getPitchName(),
+                newAndrone.getCents(), newAndrone.getWaveform());
     }
 
     @Test
@@ -87,26 +92,34 @@ public class AndroneDaoTest {
 
         assertThat(list.size(), is(1));
 
-        assertAndrone(list.get(0), androne.getId(), androne.getFrequency(), androne.getPitchName(), androne.getCents(), androne.getWaveform());
+        assertAndrone(list.get(0), androne.getId(),
+                androne.getFrequency(), androne.getPitchName(),
+                androne.getCents(), androne.getWaveform());
     }
 
     @Test
     public void updateAndroneAndGetById() {
-        dao.insert(androne);
+        Androne updateTestAndrone = new Androne(new Pitch(440.0), Waveform.SINE);
+        updateTestAndrone.setId(ID);
+        dao.insert(updateTestAndrone);
 
-        Androne updatedAndrone = new Androne(new Pitch(500.0), Waveform.SQUARE);
-        updatedAndrone.setId(ID);
+        updateTestAndrone.setFrequency(880.0);
+        updateTestAndrone.setWaveform(Waveform.SAWTOOTH);
 
-        dao.updateAndrone(updatedAndrone);
+        dao.updateAndrone(updateTestAndrone);
 
         Androne loadedAndrone = dao.getAndroneById(ID);
 
-        assertAndrone(loadedAndrone, updatedAndrone.getId(), updatedAndrone.getFrequency(), updatedAndrone.getPitchName(), updatedAndrone.getCents(), updatedAndrone.getWaveform());
+        assertAndrone(loadedAndrone, updateTestAndrone.getId(),
+                updateTestAndrone.getFrequency(), updateTestAndrone.getPitchName(),
+                updateTestAndrone.getCents(), updateTestAndrone.getWaveform());
 
 
     }
 
-    private void assertAndrone(Androne loadedAndrone, int id, double frequency, String pitchName, String cents, Waveform waveform) {
+    private void assertAndrone(Androne loadedAndrone, int id,
+                               double frequency, String pitchName,
+                               String cents, Waveform waveform) {
         assertThat(loadedAndrone, notNullValue());
         assertThat(loadedAndrone.getId(), is(id));
         assertThat(loadedAndrone.getFrequency(), is(frequency));
