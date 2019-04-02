@@ -110,6 +110,27 @@ public class AndroneDaoTest {
 
     }
 
+    @Test
+    public void deleteAndroneAndGetList() {
+        dao.insert(androne);
+        dao.deleteAndrone(androne);
+
+        List<Androne> list = dao.getAllAndrones();
+
+        assertThat(list.size(), is(0));
+    }
+
+    @Test
+    public void deleteAllAndronesAndGetList() {
+        dao.insert(androne);
+        dao.deleteAllAndrones();
+
+        List<Androne> list = dao.getAllAndrones();
+
+        assertThat(list.size(), is(0));
+
+    }
+
     private void assertAndrone(Androne loadedAndrone, int id,
                                double frequency, String pitchName,
                                String cents, Waveform waveform) {
