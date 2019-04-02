@@ -1,6 +1,5 @@
 package com.boxnotfound.sinewavegenerator;
 
-import android.arch.lifecycle.MediatorLiveData;
 import android.arch.persistence.room.Room;
 
 import com.boxnotfound.sinewavegenerator.constants.Waveform;
@@ -23,7 +22,6 @@ import androidx.test.core.app.ApplicationProvider;
 
 public class AndroneDaoTest {
 
-    private MediatorLiveData<List<Androne>> mAndroneLive;
     private AppDatabase db;
     private AndroneDao dao;
     private Androne androne;
@@ -37,14 +35,12 @@ public class AndroneDaoTest {
         Pitch.instantiatePitchNames(ApplicationProvider.getApplicationContext());
         androne = new Androne(new Pitch(440.0), Waveform.SINE);
         androne.setId(ID);
-        mAndroneLive = new MediatorLiveData<>();
     }
 
     @After
     public void cleanup() {
         db.close();
         Pitch.releasePitchNames();
-        mAndroneLive = null;
     }
 
     @Test
