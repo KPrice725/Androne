@@ -1,10 +1,7 @@
 package com.boxnotfound.sinewavegenerator;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
-import android.arch.lifecycle.Observer;
 import android.arch.persistence.room.Room;
-import android.support.annotation.Nullable;
 
 import com.boxnotfound.sinewavegenerator.constants.Waveform;
 import com.boxnotfound.sinewavegenerator.model.Androne;

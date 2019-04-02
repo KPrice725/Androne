@@ -1,6 +1,5 @@
 package com.boxnotfound.sinewavegenerator.model.source.androne;
 
-import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
 import com.boxnotfound.sinewavegenerator.model.Androne;
