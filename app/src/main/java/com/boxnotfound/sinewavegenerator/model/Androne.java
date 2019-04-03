@@ -73,7 +73,7 @@ public class Androne {
         this.id = id;
     }
 
-    public void setPitchName(Pitch pitch) {
+    public void setPitch(Pitch pitch) {
         this.pitch = pitch;
     }
 
