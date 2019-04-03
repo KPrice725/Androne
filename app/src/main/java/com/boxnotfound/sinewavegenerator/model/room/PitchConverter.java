@@ -1,8 +1,9 @@
 package com.boxnotfound.sinewavegenerator.model.room;
 
-import android.arch.persistence.room.TypeConverter;
 
 import com.boxnotfound.sinewavegenerator.model.Pitch;
+
+import androidx.room.TypeConverter;
 
 public class PitchConverter {
     @TypeConverter

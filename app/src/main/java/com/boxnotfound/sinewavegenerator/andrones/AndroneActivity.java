@@ -2,8 +2,6 @@ package com.boxnotfound.sinewavegenerator.andrones;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -28,8 +26,10 @@ import com.boxnotfound.sinewavegenerator.model.Pitch;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 

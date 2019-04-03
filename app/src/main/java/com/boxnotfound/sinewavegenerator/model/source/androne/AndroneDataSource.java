@@ -1,10 +1,10 @@
 package com.boxnotfound.sinewavegenerator.model.source.androne;
 
-import android.support.annotation.NonNull;
-
 import com.boxnotfound.sinewavegenerator.model.Androne;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 public interface AndroneDataSource {
 

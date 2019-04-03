@@ -33,13 +33,13 @@ android {
             implementation "com.google.guava:guava:27.1-jre"
 
             //Room
-            implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
-            annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"
-            androidTestImplementation "android.arch.persistence.room:testing:$rootProject.roomVersion"
+            implementation "androidx.room:room-runtime:2.1.0-alpha03"
+            annotationProcessor "androidx.room:room-compiler:2.1.0-alpha03"
+            androidTestImplementation "androidx.room:room-testing:2.1.0-alpha03"
 
             // Lifecycle components
-            implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
-            annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
+            implementation "androidx.lifecycle:lifecycle-extensions:2.1.0-alpha03"
+            annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.1.0-alpha03"
 
             //Androidx test
             testImplementation 'androidx.test:monitor:1.1.1'
@@ -56,5 +56,9 @@ android {
 
         }
     }
+}
+
+dependencies {
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }
 

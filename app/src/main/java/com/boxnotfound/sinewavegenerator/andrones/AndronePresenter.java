@@ -1,13 +1,13 @@
 package com.boxnotfound.sinewavegenerator.andrones;
 
-import android.support.annotation.NonNull;
-
 import com.boxnotfound.sinewavegenerator.constants.Waveform;
 import com.boxnotfound.sinewavegenerator.model.Androne;
 import com.boxnotfound.sinewavegenerator.model.source.androne.AndroneDataSource;
 import com.boxnotfound.sinewavegenerator.model.source.androne.AndroneRepository;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

@@ -1,8 +1,8 @@
 package com.boxnotfound.sinewavegenerator.model.room;
 
-import android.arch.persistence.room.TypeConverter;
-
 import com.boxnotfound.sinewavegenerator.constants.Waveform;
+
+import androidx.room.TypeConverter;
 
 public class WaveformConverter {
     @TypeConverter

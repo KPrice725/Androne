@@ -2,12 +2,13 @@ package com.boxnotfound.sinewavegenerator.model.source.androne;
 
 import android.app.Application;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
 
 import com.boxnotfound.sinewavegenerator.model.Androne;
 import com.boxnotfound.sinewavegenerator.model.source.AppDatabase;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 public class AndroneRepository implements AndroneDataSource {
 
