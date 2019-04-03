@@ -182,10 +182,6 @@ public class Pitch {
         return cents;
     }
 
-    public void setCents(int cents) {
-        this.cents = cents;
-    }
-
     void incrementPitch() throws IllegalArgumentException {
         int currentPitchIndex = pitchNames.indexOf(pitchName);
         if (currentPitchIndex < pitchNames.size() - 1) {
