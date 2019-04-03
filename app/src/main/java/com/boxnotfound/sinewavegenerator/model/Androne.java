@@ -82,9 +82,13 @@ public class Androne {
     }
 
     public void setFrequency(double f) throws IllegalArgumentException {
-        pitch = new Pitch(f);
-        if (androneThread != null) {
-            androneThread.setFrequency(f);
+        try {
+            pitch.setFrequency(f);
+            if (androneThread != null) {
+                androneThread.setFrequency(f);
+            }
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         }
     }
 
@@ -131,9 +135,13 @@ public class Androne {
     }
 
     public void setPitchName(String pitchName) {
-        pitch = new Pitch(pitchName);
-        if (androneThread != null) {
-            androneThread.setFrequency(pitch.getFrequency());
+        try {
+            pitch.setPitchName(pitchName);
+            if (androneThread != null) {
+                androneThread.setFrequency(pitch.getFrequency());
+            }
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         }
     }
 

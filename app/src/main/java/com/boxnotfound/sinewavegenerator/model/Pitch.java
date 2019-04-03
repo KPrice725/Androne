@@ -154,20 +154,28 @@ public class Pitch {
         return frequency;
     }
 
-    public void setFrequency(double frequency) {
-        this.frequency = frequency;
-        this.pitchName = getPitchNameFromFrequency(frequency);
-        this.cents = calculateCents(frequency, getFrequencyFromPitchName(pitchName));
+    public void setFrequency(double frequency) throws IllegalArgumentException {
+        if (frequency >= MIN_FREQUENCY && frequency < MAX_FREQUENCY) {
+            this.frequency = frequency;
+            this.pitchName = getPitchNameFromFrequency(frequency);
+            this.cents = calculateCents(frequency, getFrequencyFromPitchName(pitchName));
+        } else {
+            throw new IllegalArgumentException("Frequency not within allowable range (40 - 20,000hz)");
+        }
     }
 
     public String getPitchName() {
         return pitchName;
     }
 
-    public void setPitchName(String pitchName) {
-        this.pitchName = pitchName;
-        this.frequency = getFrequencyFromPitchName(pitchName);
-        this.cents = 0;
+    public void setPitchName(String pitchName) throws IllegalArgumentException {
+        if (pitchNames.contains(pitchName)) {
+            this.pitchName = pitchName;
+            this.frequency = getFrequencyFromPitchName(pitchName);
+            this.cents = 0;
+        } else {
+            throw new IllegalArgumentException("Pitch Name Not Recognized");
+        }
     }
 
     public int getCents() {
