@@ -4,11 +4,7 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -31,6 +27,11 @@ import com.boxnotfound.sinewavegenerator.model.Androne;
 import com.boxnotfound.sinewavegenerator.model.Pitch;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class AndroneActivity extends AppCompatActivity {
 
@@ -55,7 +56,7 @@ public class AndroneActivity extends AppCompatActivity {
         androneList.add(new Androne(new Pitch("A4"), Waveform.SINE));
         androneViewAdapter = new AndroneViewAdapter(AndroneActivity.this, androneList);
 
-        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
 
         androneView.setLayoutManager(manager);
         androneView.setAdapter(androneViewAdapter);
