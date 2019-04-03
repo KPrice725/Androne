@@ -66,9 +66,9 @@ public class Pitch {
             throw new IllegalArgumentException("Error: Could Not Locate Middle C");
         }
 
-        final double frequency = pitchStandardInHz * Math.pow(2.0, ((indexOfPitchName - indexOfMiddleC) - 9.0) / 12.0);
+        final double freq = pitchStandardInHz * Math.pow(2.0, ((indexOfPitchName - indexOfMiddleC) - 9.0) / 12.0);
 
-        return frequency;
+        return freq;
     }
 
     private String getPitchNameFromFrequency(final double frequency) {
