@@ -13,15 +13,11 @@ public class Pitch {
     private static final String MIDDLE_C = "C4";
     private static double pitchStandardInHz = 440.0;
 
-    private int id;
-
     private String pitchName;
 
     private double frequency;
 
     private int cents;
-
-    private int pitchListIndex;
 
     private static ArrayList<String> pitchNames;
 
@@ -40,7 +36,6 @@ public class Pitch {
         }
         // Since the pitch was instantiated with a definitive pitch name, cents will always be 0
         cents = 0;
-        pitchListIndex = pitchNames.indexOf(pitchName);
     }
 
     public Pitch(final double frequency) throws IllegalArgumentException {
@@ -55,7 +50,6 @@ public class Pitch {
         // Since the pitch was instantiated with a frequency,
         // cents will tell user how far away frequency is to closest "in tune" pitch
         cents = calculateCents(frequency, closestPitchFrequency);
-        pitchListIndex = pitchNames.indexOf(pitchName);
     }
 
     //formula for calculating pitch frequency: pitch of A4 * 2 ^ ((number of semitones away from C4 - 9) / 12).
@@ -135,14 +129,6 @@ public class Pitch {
         return pitchName;
     }
 
-    public static Pitch atIndex(int index) {
-        if (index < pitchNames.size()) {
-            return new Pitch(pitchNames.get(index));
-        } else {
-            throw new IndexOutOfBoundsException("Index exceeds Pitch List's range!");
-        }
-    }
-
     // There are 100 cents of distance per semitone, 1200 cents per octave.
     // cents = 1200 * Log2(pitchFrequency / frequencyOfClosestPitch)
     private int calculateCents(final double frequency, final double closestPitchFrequency) {
@@ -164,12 +150,6 @@ public class Pitch {
         }
     }
 
-    public int getId() { return id; }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public double getFrequency() {
         return frequency;
     }
@@ -178,7 +158,6 @@ public class Pitch {
         this.frequency = frequency;
         this.pitchName = getPitchNameFromFrequency(frequency);
         this.cents = calculateCents(frequency, getFrequencyFromPitchName(pitchName));
-        this.pitchListIndex = pitchNames.indexOf(pitchName);
     }
 
     public String getPitchName() {
@@ -189,7 +168,6 @@ public class Pitch {
         this.pitchName = pitchName;
         this.frequency = getFrequencyFromPitchName(pitchName);
         this.cents = 0;
-        this.pitchListIndex = pitchNames.indexOf(pitchName);
     }
 
     public int getCents() {
@@ -200,23 +178,42 @@ public class Pitch {
         this.cents = cents;
     }
 
-    public int getPitchListIndex() {
-        return pitchListIndex;
+    void incrementPitch() throws IllegalArgumentException {
+        int currentPitchIndex = pitchNames.indexOf(pitchName);
+        if (currentPitchIndex < pitchNames.size() - 1) {
+            setPitchName(pitchNames.get(currentPitchIndex + 1));
+        } else {
+            throw new IllegalArgumentException("Cannot increment pitch - already at highest pitch");
+        }
     }
 
-    public void setPitchListIndex(int pitchListIndex) {
-        this.pitchListIndex = pitchListIndex;
+    void decrementPitch() throws IllegalArgumentException {
+        int currentPitchIndex = pitchNames.indexOf(pitchName);
+        if (currentPitchIndex > 0) {
+            setPitchName(pitchNames.get(currentPitchIndex - 1));
+        } else {
+            throw new IllegalArgumentException("Cannot decrement pitch - already at lowest pitch");
+        }
     }
 
-    public static int getPitchListSize() {
-        return pitchNames.size();
+    void incrementFrequency() throws IllegalArgumentException {
+        if (frequency + 1 < MAX_FREQUENCY) {
+            setFrequency(frequency + 1);
+        } else if (frequency < MAX_FREQUENCY) {
+            setFrequency(MAX_FREQUENCY);
+        } else {
+            throw new IllegalArgumentException("Cannot increment frequency - already at highest frequency");
+        }
     }
 
-    public static double getMaxFrequency() {
-        return MAX_FREQUENCY;
+    void decrementFrequency() throws IllegalArgumentException {
+        if (frequency - 1 > MIN_FREQUENCY) {
+            setFrequency(frequency - 1);
+        } else if (frequency > MIN_FREQUENCY) {
+            setFrequency(MIN_FREQUENCY);
+        } else {
+            throw new IllegalArgumentException("Cannot decrement frequency - already at lowest frequency");
+        }
     }
 
-    public static double getMinFrequency() {
-        return MIN_FREQUENCY;
-    }
 }

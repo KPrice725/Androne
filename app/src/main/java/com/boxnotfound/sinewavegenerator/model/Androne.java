@@ -172,41 +172,51 @@ public class Androne {
         this.androneName = androneName;
     }
 
-    public void incrementFrequency() throws IllegalArgumentException {
+    public void incrementFrequency() {
 
-        pitch = new Pitch(getFrequency() + 1);
-
-        if (androneThread != null) {
-            androneThread.setFrequency(pitch.getFrequency());
+        try {
+            pitch.incrementFrequency();
+            if (androneThread != null) {
+                androneThread.setFrequency(pitch.getFrequency());
+            }
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         }
     }
 
     public void decrementFrequency() throws IllegalArgumentException {
 
-        pitch = new Pitch(getFrequency() - 1);
-
-        if (androneThread != null) {
-            androneThread.setFrequency(pitch.getFrequency());
+        try {
+            pitch.decrementFrequency();
+            if (androneThread != null) {
+                androneThread.setFrequency(pitch.getFrequency());
+            }
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         }
     }
 
     public void incrementPitch() {
 
-        if (pitch.getPitchListIndex() + 1 < Pitch.getPitchListSize()) {
-            pitch = Pitch.atIndex(pitch.getPitchListIndex() + 1);
+        try {
+            pitch.incrementPitch();
             if (androneThread != null) {
                 androneThread.setFrequency(pitch.getFrequency());
             }
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         }
     }
 
     public void decrementPitch() {
 
-        if (pitch.getPitchListIndex() - 1 >= 0) {
-            pitch = Pitch.atIndex(pitch.getPitchListIndex() - 1);
+        try {
+            pitch.decrementPitch();
             if (androneThread != null) {
                 androneThread.setFrequency(pitch.getFrequency());
             }
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         }
     }
 
