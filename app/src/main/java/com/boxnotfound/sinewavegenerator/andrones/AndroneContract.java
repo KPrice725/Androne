@@ -15,29 +15,29 @@ public interface AndroneContract {
 
         void addAndrone(Androne androne);
 
-        void setPitch(double frequency);
+        void setPitch(Androne androne, double frequency);
 
-        void setPitch(String pitchName);
+        void setPitch(Androne androne, String pitchName);
 
-        void incrementFrequency();
+        void incrementFrequency(Androne androne);
 
-        void decrementFrequency();
+        void decrementFrequency(Androne androne);
 
-        void incrementPitch();
+        void incrementPitch(Androne androne);
 
-        void decrementPitch();
+        void decrementPitch(Androne androne);
 
-        void setWaveform(Waveform waveform);
+        void setWaveform(Androne androne, Waveform waveform);
 
-        void setVolume(float volume);
+        void setVolume(Androne androne, float volume);
 
-        void setVolume(int volumeProgress);
+        void setVolume(Androne androne, int volumeProgress);
 
-        void playAndrone();
+        void playAndrone(Androne androne);
 
-        void stopAndrone();
+        void stopAndrone(Androne androne);
 
-        void deleteAndrone();
+        void deleteAndrone(Androne androne);
 
         void deleteAllAndrones();
 
@@ -53,17 +53,6 @@ public interface AndroneContract {
 
         void displayDeleteAndrone();
 
-        void displayAndronePitch();
-
-        void displayAndroneWaveform();
-
-        void displayAndroneVolume();
-
-        void displayAndronePlaying();
-
-        void displayAndroneStopped();
-
-
-
+        void displayUpdateAndrone();
     }
 }
