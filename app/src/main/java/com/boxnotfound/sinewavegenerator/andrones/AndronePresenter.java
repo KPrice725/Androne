@@ -109,14 +109,12 @@ public class AndronePresenter implements AndroneContract.Presenter {
     }
 
     @Override
-    public void playAndrone(Androne androne) {
-        androne.startAndrone();
-        updateAndrone(androne);
-    }
-
-    @Override
-    public void stopAndrone(Androne androne) {
-        androne.stopAndrone();
+    public void togglePlay(Androne androne) {
+        if (!androne.isPlaying()) {
+            androne.startAndrone();
+        } else {
+            androne.stopAndrone();
+        }
         updateAndrone(androne);
     }
 

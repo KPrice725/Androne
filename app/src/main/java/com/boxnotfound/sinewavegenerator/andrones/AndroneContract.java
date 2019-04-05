@@ -33,10 +33,8 @@ public interface AndroneContract {
 
         void setVolume(Androne androne, int volumeProgress);
 
-        void playAndrone(Androne androne);
-
-        void stopAndrone(Androne androne);
-
+        void togglePlay(Androne androne);
+        
         void deleteAndrone(Androne androne);
 
         void deleteAllAndrones();
